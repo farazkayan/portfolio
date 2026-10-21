@@ -1,10 +1,11 @@
 import React from 'react';
 import { motion } from 'motion/react';
-import { ArrowDown, ArrowRight, ArrowUpRight } from 'lucide-react';
+import { ArrowDown } from 'lucide-react';
 import { ChildhoodPortrait } from './ChildhoodPortrait';
+import { FlowButton } from './ui/flow-button';
 
 export const HeroHome: React.FC = () => {
-  const scrollTo = (id: string) => (event: React.MouseEvent<HTMLAnchorElement>) => {
+  const scrollTo = (id: string) => (event: React.MouseEvent<HTMLElement>) => {
     event.preventDefault();
     const target = document.getElementById(id);
     if (!target) return;
@@ -39,29 +40,17 @@ export const HeroHome: React.FC = () => {
               Faraz Kayan Haque
             </h1>
 
-            <p className="max-w-2xl border-l border-purple-400/60 pl-4 font-display text-lg leading-relaxed text-zinc-200 sm:pl-5 sm:text-2xl">
+            <p className="max-w-xl border-l border-purple-400/50 pl-3.5 sm:pl-4 font-display text-base sm:text-lg leading-relaxed text-zinc-300">
               I see something that doesn’t exist, and I decide to build it.
             </p>
 
-            <p className="max-w-xl text-sm leading-7 text-zinc-400 sm:text-base">
-              I’m a student who learns by making things — useful apps, small tools, and a homelab to tinker with.
-            </p>
-
             <div className="pt-2 flex flex-wrap items-center gap-4 sm:gap-5">
-              <a
+              <FlowButton
+                text="See my projects"
                 href="#projects"
                 onClick={scrollTo('projects')}
-                className="group inline-flex min-h-11 items-center gap-2 rounded-full bg-white px-5 text-sm font-medium text-zinc-950 transition hover:bg-zinc-200"
-              >
-                See my projects
-                <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-0.5" />
-              </a>
-              <a
-                href="mailto:contact@farazkh.dev"
-                className="inline-flex min-h-11 items-center gap-1.5 text-sm text-zinc-400 transition hover:text-white"
-              >
-                Say hello <ArrowUpRight className="h-3.5 w-3.5" />
-              </a>
+                variant="primary"
+              />
             </div>
           </div>
 

@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
-import { Mail, ArrowRight, Copy, Check, Github, Linkedin, Instagram, Facebook } from 'lucide-react';
+import { Copy, Check, Github, Linkedin, Instagram, Facebook } from 'lucide-react';
+import { FlowButton } from './ui/flow-button';
 
 export const ContactSection: React.FC = () => {
   const [copied, setCopied] = useState(false);
@@ -82,14 +83,12 @@ export const ContactSection: React.FC = () => {
             ==================================================== */}
         <div className="flex flex-col sm:flex-row items-center justify-center gap-3 pt-1 sm:pt-2 w-full max-w-md">
           {/* Primary Action Button */}
-          <a
+          <FlowButton
+            text="Say hello"
             href={`mailto:${email}`}
-            className="group inline-flex items-center justify-center gap-2.5 px-6 py-3.5 rounded-full bg-white text-zinc-950 font-mono text-xs font-medium hover:bg-zinc-200 transition-all cursor-pointer shadow-sm w-full sm:w-auto min-h-[44px] touch-manipulation"
-          >
-            <Mail className="w-3.5 h-3.5 text-zinc-900" />
-            <span>Say hello</span>
-            <ArrowRight className="w-3.5 h-3.5 transition-transform group-hover:translate-x-1" />
-          </a>
+            variant="outline"
+            className="w-full sm:w-auto"
+          />
 
           {/* Quick Copy Email Utility */}
           <button
