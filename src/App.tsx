@@ -7,6 +7,7 @@ import { ProjectsSection } from './components/ProjectsSection';
 import { HomelabSection } from './components/HomelabSection';
 import { HobbiesSection } from './components/HobbiesSection';
 import { ContactSection } from './components/ContactSection';
+import HalftoneWordmarkFooter from './components/ui/halftone-wordmark-footer';
 
 const AllProjectsPage = lazy(() =>
   import('./components/AllProjectsPage').then((m) => ({
@@ -78,6 +79,17 @@ export default function App() {
         <HomelabSection />
         <HobbiesSection />
         <ContactSection />
+        <HalftoneWordmarkFooter
+          wordmark="faraz"
+          label="Faraz Kayan Haque"
+          meta="©2026 · Dhaka, Bangladesh"
+          palette={{
+            background: "#09090b",
+            ink: "#e4e4e7",
+            warm: "#c084fc",
+          }}
+          height="520px"
+        />
       </main>
     </div>
   );

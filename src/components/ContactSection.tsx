@@ -118,10 +118,10 @@ export const ContactSection: React.FC = () => {
         </div>
 
         {/* ====================================================
-            SOCIAL LINKS: UNDERSTATED HORIZONTAL ROW
+            SOCIAL LINKS: UNDERSTATED ICON ROW
             ==================================================== */}
         <div className="pt-4 sm:pt-6 w-full">
-          <nav aria-label="Social profiles" className="flex flex-wrap items-center justify-center gap-5 sm:gap-8">
+          <nav aria-label="Social profiles" className="flex items-center justify-center gap-3 sm:gap-4">
             {socials.map((social) => {
               const Icon = social.icon;
               return (
@@ -130,11 +130,12 @@ export const ContactSection: React.FC = () => {
                   href={social.url}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="group flex items-center gap-2 text-xs font-mono text-zinc-400 hover:text-zinc-200 transition-colors py-2 px-1 outline-none focus:text-white touch-manipulation"
+                  className="group relative flex items-center justify-center w-10 h-10 sm:w-11 sm:h-11 rounded-full bg-[#0c0c0e]/90 border border-zinc-800/90 hover:border-zinc-600 hover:bg-zinc-900 text-zinc-400 hover:text-white transition-all duration-200 shadow-sm focus:outline-none focus:ring-1 focus:ring-purple-500/50 touch-manipulation"
                   aria-label={social.name}
+                  title={social.name}
                 >
-                  <Icon className="w-4 h-4 text-zinc-400 group-hover:text-purple-400 transition-colors" />
-                  <span className="inline">{social.name}</span>
+                  <Icon className="w-4 h-4 sm:w-[18px] sm:h-[18px] transition-transform duration-200 group-hover:scale-110" />
+                  <span className="sr-only">{social.name}</span>
                 </a>
               );
             })}
