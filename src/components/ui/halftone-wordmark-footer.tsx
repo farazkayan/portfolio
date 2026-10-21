@@ -177,6 +177,13 @@ const HWF_CSS = `
   gap: 24px; padding: clamp(22px, 3.4vw, 40px) clamp(20px, 3.4vw, 44px) 0;
   font-family: var(--hwf-mono); font-size: 10.5px; letter-spacing: .18em; text-transform: uppercase; line-height: 1.75;
 }
+.hwf-top--nobrand {
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  max-width: 640px;
+  margin: 0 auto;
+  justify-content: center;
+  text-align: center;
+}
 .hwf-brand strong { display: block; font-weight: 500; }
 .hwf-brand span { opacity: .45; }
 .hwf-col h3 { margin: 0; font: inherit; opacity: .4; font-weight: 500; }
@@ -269,8 +276,8 @@ const HWF_CSS = `
 
 export default function HalftoneWordmarkFooter({
   wordmark = "faraz",
-  label = "Faraz Kayan Haque",
-  meta = "©2026 · Dhaka, Bangladesh",
+  label = "",
+  meta = "",
   columns = DEFAULT_COLUMNS,
   backToTop = true,
   preset = "night",
@@ -560,11 +567,13 @@ export default function HalftoneWordmarkFooter({
       <style>{HWF_CSS}</style>
       <canvas ref={canvasRef} aria-hidden="true" />
       <span className="hwf-sr">{wordmark}</span>
-      <div className="hwf-top">
-        <div className="hwf-brand">
-          <strong>{label}</strong>
-          <span>{meta}</span>
-        </div>
+      <div className={`hwf-top ${!(label || meta) ? "hwf-top--nobrand" : ""}`}>
+        {label || meta ? (
+          <div className="hwf-brand">
+            {label ? <strong>{label}</strong> : null}
+            {meta ? <span>{meta}</span> : null}
+          </div>
+        ) : null}
         {columns.map((col) => (
           <nav className="hwf-col" key={col.title} aria-label={col.title}>
             <h3>{col.title}</h3>

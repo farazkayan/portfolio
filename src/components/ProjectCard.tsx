@@ -70,7 +70,7 @@ export const ProjectCard: React.FC<ProjectCardProps> = ({
   return (
     <article
       className={`
-        rounded-2xl sm:rounded-3xl border transition-all duration-300 overflow-hidden bg-[#0c0c0e]/95
+        rounded-2xl sm:rounded-3xl border transition-all duration-300 overflow-hidden bg-[#1c1c22]/95
         ${theme.cardBorder}
         ${theme.cardGlow}
       `}
@@ -178,7 +178,7 @@ export const ProjectCard: React.FC<ProjectCardProps> = ({
               {/* Row 1: Story Card & Overview Card */}
               <div className="grid grid-cols-1 md:grid-cols-2 gap-4 sm:gap-6">
                 {/* Story Card */}
-                <div className="p-4 sm:p-7 rounded-xl sm:rounded-2xl bg-[#0c0c0e] border border-zinc-800/90 flex flex-col justify-between space-y-3 sm:space-y-4 shadow-sm">
+                <div className="p-4 sm:p-7 rounded-xl sm:rounded-2xl bg-[#1c1c22] border border-zinc-800/90 flex flex-col justify-between space-y-3 sm:space-y-4 shadow-sm">
                   <div className="space-y-2.5 sm:space-y-3">
                     <span className={`text-xs font-mono uppercase tracking-widest font-semibold block ${theme.textAccent}`}>
                       The Story
@@ -198,7 +198,7 @@ export const ProjectCard: React.FC<ProjectCardProps> = ({
                 </div>
 
                 {/* Overview Card */}
-                <div className="p-4 sm:p-7 rounded-xl sm:rounded-2xl bg-[#0c0c0e] border border-zinc-800/90 flex flex-col justify-between space-y-3 sm:space-y-4 shadow-sm">
+                <div className="p-4 sm:p-7 rounded-xl sm:rounded-2xl bg-[#1c1c22] border border-zinc-800/90 flex flex-col justify-between space-y-3 sm:space-y-4 shadow-sm">
                   <div className="space-y-2.5 sm:space-y-3">
                     <span className="text-xs font-mono uppercase tracking-widest text-zinc-400 font-semibold block">
                       Overview
@@ -227,7 +227,7 @@ export const ProjectCard: React.FC<ProjectCardProps> = ({
               {project.role && project.collaboration && (
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-4 sm:gap-6">
                   {/* My Role Card */}
-                  <div className="p-4 sm:p-7 rounded-xl sm:rounded-2xl bg-[#0c0c0e] border border-zinc-800/90 space-y-3 sm:space-y-4 shadow-sm">
+                  <div className="p-4 sm:p-7 rounded-xl sm:rounded-2xl bg-[#1c1c22] border border-zinc-800/90 space-y-3 sm:space-y-4 shadow-sm">
                     <span className="text-xs font-mono uppercase tracking-widest text-zinc-400 font-semibold block">
                       My Role
                     </span>
@@ -258,7 +258,7 @@ export const ProjectCard: React.FC<ProjectCardProps> = ({
                   </div>
 
                   {/* Collaboration Card */}
-                  <div className="p-4 sm:p-7 rounded-xl sm:rounded-2xl bg-[#0c0c0e] border border-zinc-800/90 space-y-3 sm:space-y-4 shadow-sm">
+                  <div className="p-4 sm:p-7 rounded-xl sm:rounded-2xl bg-[#1c1c22] border border-zinc-800/90 space-y-3 sm:space-y-4 shadow-sm">
                     <span className="text-xs font-mono uppercase tracking-widest text-zinc-400 font-semibold block">
                       Built With
                     </span>
@@ -298,7 +298,7 @@ export const ProjectCard: React.FC<ProjectCardProps> = ({
 
               {/* Row 2 (Alternative): What I Built (Capabilities Card) */}
               {project.capabilities && (
-                <div className="p-4 sm:p-7 rounded-xl sm:rounded-2xl bg-[#0c0c0e] border border-zinc-800/90 space-y-3 sm:space-y-4 shadow-sm">
+                <div className="p-4 sm:p-7 rounded-xl sm:rounded-2xl bg-[#1c1c22] border border-zinc-800/90 space-y-3 sm:space-y-4 shadow-sm">
                   <div className="flex items-center justify-between border-b border-zinc-900 pb-2.5 sm:pb-3">
                     <span className="text-xs font-mono uppercase tracking-widest text-zinc-400 font-semibold">
                       What I Built (Capabilities)
@@ -325,7 +325,7 @@ export const ProjectCard: React.FC<ProjectCardProps> = ({
 
               {/* Row 3: Technical Details Card (Wide Card with Diagram or Subsections) */}
               {project.technicalDetails && (
-                <div className="p-4 sm:p-7 rounded-xl sm:rounded-2xl bg-[#0c0c0e] border border-zinc-800/90 space-y-4 sm:space-y-5 shadow-sm">
+                <div className="p-4 sm:p-7 rounded-xl sm:rounded-2xl bg-[#1c1c22] border border-zinc-800/90 space-y-4 sm:space-y-5 shadow-sm">
                   <div className="flex items-center justify-between border-b border-zinc-900 pb-2.5 sm:pb-3">
                     <span className="text-xs font-mono uppercase tracking-widest text-zinc-400 font-semibold">
                       Technical Details
@@ -403,7 +403,7 @@ export const ProjectCard: React.FC<ProjectCardProps> = ({
               <div className="grid grid-cols-1 md:grid-cols-2 gap-4 sm:gap-6">
                 {/* What I Learned Card */}
                 {project.whatILearned && (
-                  <div className="p-4 sm:p-7 rounded-xl sm:rounded-2xl bg-[#0c0c0e] border border-zinc-800/90 flex flex-col justify-between space-y-3 sm:space-y-4 shadow-sm">
+                  <div className="p-4 sm:p-7 rounded-xl sm:rounded-2xl bg-[#1c1c22] border border-zinc-800/90 flex flex-col justify-between space-y-3 sm:space-y-4 shadow-sm">
                     <div className="space-y-2 sm:space-y-2.5">
                       <span className="text-xs font-mono uppercase tracking-widest text-zinc-400 font-semibold block">
                         What I Learned
@@ -419,7 +419,7 @@ export const ProjectCard: React.FC<ProjectCardProps> = ({
                 )}
 
                 {/* Tech Stack & Actions Card */}
-                <div className="p-4 sm:p-7 rounded-xl sm:rounded-2xl bg-[#0c0c0e] border border-zinc-800/90 flex flex-col justify-between space-y-4 sm:space-y-5 shadow-sm">
+                <div className="p-4 sm:p-7 rounded-xl sm:rounded-2xl bg-[#1c1c22] border border-zinc-800/90 flex flex-col justify-between space-y-4 sm:space-y-5 shadow-sm">
                   <div className="space-y-2.5 sm:space-y-3">
                     <span className="text-xs font-mono uppercase tracking-widest text-zinc-400 font-semibold block">
                       Tech Stack

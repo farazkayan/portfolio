@@ -59,14 +59,14 @@ export default function App() {
 
   if (isAllProjectsView) {
     return (
-      <Suspense fallback={<div className="min-h-screen bg-[#09090b]" />}>
+      <Suspense fallback={<div className="min-h-screen bg-[#141418]" />}>
         <AllProjectsPage onBack={handleBackToPortfolio} />
       </Suspense>
     );
   }
 
   return (
-    <div className="min-h-screen bg-[#09090b] text-zinc-100 flex flex-col font-sans selection:bg-purple-900/40 selection:text-purple-200">
+    <div className="min-h-screen bg-[#141418] text-zinc-100 flex flex-col font-sans selection:bg-purple-900/40 selection:text-purple-200">
       {/* Floating Limelight Navbar */}
       <Navbar />
 
@@ -81,10 +81,10 @@ export default function App() {
         <ContactSection />
         <HalftoneWordmarkFooter
           wordmark="faraz"
-          label="Faraz Kayan Haque"
-          meta="©2026 · Dhaka, Bangladesh"
+          label=""
+          meta=""
           palette={{
-            background: "#09090b",
+            background: "#141418",
             ink: "#e4e4e7",
             warm: "#c084fc",
           }}

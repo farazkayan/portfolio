@@ -323,7 +323,7 @@ const CatsCard: React.FC<CatsCardProps> = ({
         overflow-hidden
         rounded-2xl
         sm:rounded-3xl
-        bg-[#0c0c0e]/95
+        bg-[#1c1c22]/95
         border
         border-zinc-800/90
         p-5
@@ -337,7 +337,7 @@ const CatsCard: React.FC<CatsCardProps> = ({
         transition-all
         duration-300
         hover:border-amber-500/40
-        hover:bg-[#0e0e11]
+        hover:bg-[#22222a]
       "
     >
       {/* Background Rive Cat */}
@@ -663,7 +663,7 @@ export const HobbiesSection: React.FC = () => {
                 overflow-hidden
                 rounded-2xl
                 sm:rounded-3xl
-                bg-[#0c0c0e]/95
+                bg-[#1c1c22]/95
                 border
                 border-zinc-800/90
                 p-5
@@ -677,7 +677,7 @@ export const HobbiesSection: React.FC = () => {
                 transition-all
                 duration-300
                 hover:border-sky-500/40
-                hover:bg-[#0e0e11]
+                hover:bg-[#22222a]
               "
             >
               {/* Faint Camera Viewfinder Watermark */}
@@ -857,7 +857,7 @@ export const HobbiesSection: React.FC = () => {
                 overflow-hidden
                 rounded-2xl
                 sm:rounded-3xl
-                bg-[#0c0c0e]/95
+                bg-[#1c1c22]/95
                 border
                 border-zinc-800/90
                 p-5
@@ -871,7 +871,7 @@ export const HobbiesSection: React.FC = () => {
                 transition-all
                 duration-300
                 hover:border-emerald-500/40
-                hover:bg-[#0e0e11]
+                hover:bg-[#22222a]
               "
             >
               <div
@@ -1016,7 +1016,7 @@ export const HobbiesSection: React.FC = () => {
                 overflow-hidden
                 rounded-2xl
                 sm:rounded-3xl
-                bg-[#0c0c0e]/95
+                bg-[#1c1c22]/95
                 border
                 border-zinc-800/90
                 p-5
@@ -1030,7 +1030,7 @@ export const HobbiesSection: React.FC = () => {
                 transition-all
                 duration-300
                 hover:border-rose-500/40
-                hover:bg-[#0e0e11]
+                hover:bg-[#22222a]
               "
             >
               <div
@@ -1170,7 +1170,7 @@ export const HobbiesSection: React.FC = () => {
                 overflow-hidden
                 rounded-2xl
                 sm:rounded-3xl
-                bg-[#0c0c0e]/95
+                bg-[#1c1c22]/95
                 border
                 border-zinc-800/90
                 p-5
@@ -1184,7 +1184,7 @@ export const HobbiesSection: React.FC = () => {
                 transition-all
                 duration-300
                 hover:border-purple-500/50
-                hover:bg-[#0e0e11]
+                hover:bg-[#22222a]
                 sm:col-span-2
                 md:col-span-1
               "

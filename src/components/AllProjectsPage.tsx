@@ -23,11 +23,11 @@ export const AllProjectsPage: React.FC<AllProjectsPageProps> = ({ onBack }) => {
   }, []);
 
   return (
-    <div className="min-h-screen bg-[#09090b] text-zinc-100 flex flex-col font-sans selection:bg-purple-900/40 selection:text-purple-200 antialiased">
+    <div className="min-h-screen bg-[#141418] text-zinc-100 flex flex-col font-sans selection:bg-purple-900/40 selection:text-purple-200 antialiased">
       {/* ====================================================
           STICKY TOP NAVIGATION BAR (Destination Header)
           ==================================================== */}
-      <header className="sticky top-0 z-50 backdrop-blur-2xl bg-[#09090b]/90 border-b border-zinc-800/80 px-5 sm:px-8 lg:px-12 py-3.5 sm:py-4">
+      <header className="sticky top-0 z-50 backdrop-blur-2xl bg-[#141418]/90 border-b border-zinc-800/80 px-5 sm:px-8 lg:px-12 py-3.5 sm:py-4">
         <div className="max-w-6xl mx-auto flex items-center justify-between">
           <button
             onClick={onBack}
