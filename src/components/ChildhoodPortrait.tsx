@@ -98,17 +98,30 @@ export const ChildhoodPortrait: React.FC<ChildhoodPortraitProps> = ({ className 
   }, []);
 
   // -------------------------------------------------------------------------
-  // Handle Canvas Resize and Initial Paint
+  // Handle Canvas Resize, DPR, and Initial Paint
   // -------------------------------------------------------------------------
   useEffect(() => {
-    const canvas = canvasRef.current;
-    if (!canvas) return;
+    const handleCanvasSetup = () => {
+      const canvas = canvasRef.current;
+      if (!canvas) return;
 
-    const dpr = Math.min(window.devicePixelRatio || 1, 2);
-    canvas.width = Math.round(720 * dpr);
-    canvas.height = Math.round(960 * dpr);
+      const dpr = Math.min(window.devicePixelRatio || 1, 2);
+      canvas.width = Math.round(720 * dpr);
+      canvas.height = Math.round(960 * dpr);
 
-    renderFrame();
+      renderFrame();
+    };
+
+    handleCanvasSetup();
+    window.addEventListener('resize', handleCanvasSetup, { passive: true });
+
+    return () => {
+      window.removeEventListener('resize', handleCanvasSetup);
+      if (tweenRef.current) {
+        tweenRef.current.kill();
+        tweenRef.current = null;
+      }
+    };
   }, [renderFrame]);
 
   // -------------------------------------------------------------------------
@@ -185,16 +198,20 @@ export const ChildhoodPortrait: React.FC<ChildhoodPortraitProps> = ({ className 
     });
   }, [renderFrame]);
 
-  const handlePointerEnter = () => {
-    triggerMorph(true);
+  const handlePointerEnter = (e: React.PointerEvent) => {
+    if (e.pointerType === 'mouse') {
+      triggerMorph(true);
+    }
   };
 
-  const handlePointerLeave = () => {
-    triggerMorph(false);
+  const handlePointerLeave = (e: React.PointerEvent) => {
+    if (e.pointerType === 'mouse') {
+      triggerMorph(false);
+    }
   };
 
   const handleClick = () => {
-    // Allows tap-to-toggle on mobile and touchscreens
+    // Allows intentional tap-to-toggle on mobile and touchscreens
     triggerMorph(!isHovered);
   };
 
@@ -214,7 +231,7 @@ export const ChildhoodPortrait: React.FC<ChildhoodPortraitProps> = ({ className 
 
       {/* Main Photo Card Container */}
       <div
-        className={`photo-card relative overflow-hidden rounded-2xl sm:rounded-3xl bg-[#f4f1ea] border border-white/20 p-2.5 sm:p-3 shadow-[0_20px_50px_rgba(0,0,0,0.55)] transition-all duration-300 group-hover:shadow-[0_25px_60px_rgba(192,132,252,0.2)] group-hover:-translate-y-1 cursor-pointer ${
+        className={`photo-card relative overflow-hidden rounded-2xl sm:rounded-3xl bg-[#f4f1ea] border border-white/20 p-2.5 sm:p-3 shadow-[0_20px_50px_rgba(0,0,0,0.55)] transition-all duration-300 group-hover:shadow-[0_25px_60px_rgba(192,132,252,0.2)] group-hover:-translate-y-1 cursor-pointer focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-purple-400 focus-visible:ring-offset-2 focus-visible:ring-offset-[#141418] ${
           isAnimating ? 'will-change-transform' : ''
         }`}
         onPointerEnter={handlePointerEnter}
@@ -222,7 +239,7 @@ export const ChildhoodPortrait: React.FC<ChildhoodPortraitProps> = ({ className 
         onClick={handleClick}
         role="button"
         tabIndex={0}
-        aria-label="Interactive morphing halftone portrait. Hover or tap to transform."
+        aria-label="Interactive morphing halftone childhood portrait. Hover, tap, or press Enter to transform."
         onKeyDown={(e) => {
           if (e.key === 'Enter' || e.key === ' ') {
             e.preventDefault();
@@ -230,6 +247,10 @@ export const ChildhoodPortrait: React.FC<ChildhoodPortraitProps> = ({ className 
           }
         }}
       >
+        <span className="sr-only">
+          Interactive halftone portrait of Faraz as a child, morphing between two states.
+        </span>
+
         {/* Subtle halftone paper texture overlay */}
         <div
           aria-hidden="true"

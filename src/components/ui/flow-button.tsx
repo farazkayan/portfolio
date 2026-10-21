@@ -63,7 +63,7 @@ export function FlowButton({
   const primaryClasses = "border border-white/90 bg-white px-8 py-3 text-zinc-950 hover:border-purple-400 hover:rounded-[12px] hover:shadow-[0_0_28px_rgba(192,132,252,0.45)]";
   const outlineClasses = "border border-zinc-700/80 bg-zinc-900/90 hover:bg-purple-600/30 px-7 py-3 text-white hover:border-purple-400/80 hover:rounded-[12px] hover:shadow-[0_0_24px_rgba(168,85,247,0.35)]";
 
-  const baseClasses = `group relative inline-flex min-h-11 items-center justify-center gap-1 overflow-hidden rounded-[100px] text-sm font-semibold cursor-pointer transition-all duration-[600ms] ease-[cubic-bezier(0.23,1,0.32,1)] active:scale-[0.95] select-none ${isPrimary ? primaryClasses : outlineClasses} ${className}`.trim();
+  const baseClasses = `group relative inline-flex min-h-11 items-center justify-center gap-1 overflow-hidden rounded-[100px] text-sm font-semibold cursor-pointer transition-all duration-[600ms] ease-[cubic-bezier(0.23,1,0.32,1)] active:scale-[0.95] select-none focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-purple-400 focus-visible:ring-offset-2 focus-visible:ring-offset-[#141418] ${isPrimary ? primaryClasses : outlineClasses} ${className}`.trim();
 
   if (href) {
     return (

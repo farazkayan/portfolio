@@ -392,7 +392,7 @@ export const SkillsSection: React.FC = () => {
     <div className="border-t border-zinc-900/60">
       <section
         id="skills"
-        className="scroll-mt-24 sm:scroll-mt-28 py-20 sm:py-24 lg:py-28 px-5 sm:px-8 lg:px-12 max-w-6xl mx-auto w-full relative"
+        className="scroll-mt-24 sm:scroll-mt-28 py-20 sm:py-24 lg:py-28 px-4 xs:px-5 sm:px-8 lg:px-12 max-w-6xl mx-auto w-full relative"
       >
         {/* Subtle Destination Atmosphere: Technical Teal */}
         <div

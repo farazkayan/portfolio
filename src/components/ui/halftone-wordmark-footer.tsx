@@ -515,6 +515,8 @@ export default function HalftoneWordmarkFooter({
 
     root.addEventListener("pointermove", onMove)
     root.addEventListener("pointerleave", onLeave)
+    root.addEventListener("pointerup", onLeave)
+    root.addEventListener("pointercancel", onLeave)
     root.addEventListener("pointerdown", onDown)
     const ro = new ResizeObserver(() => {
       layout()
@@ -543,6 +545,8 @@ export default function HalftoneWordmarkFooter({
       io.disconnect()
       root.removeEventListener("pointermove", onMove)
       root.removeEventListener("pointerleave", onLeave)
+      root.removeEventListener("pointerup", onLeave)
+      root.removeEventListener("pointercancel", onLeave)
       root.removeEventListener("pointerdown", onDown)
     }
   }, [key])
@@ -578,11 +582,20 @@ export default function HalftoneWordmarkFooter({
           <nav className="hwf-col" key={col.title} aria-label={col.title}>
             <h3>{col.title}</h3>
             <ul>
-              {col.links.map((l) => (
-                <li key={l.label}>
-                  <a href={l.href || "#"}>{l.label}</a>
-                </li>
-              ))}
+              {col.links.map((l) => {
+                const isExternal = l.href?.startsWith('http');
+                return (
+                  <li key={l.label}>
+                    <a
+                      href={l.href || "#"}
+                      target={isExternal ? "_blank" : undefined}
+                      rel={isExternal ? "noopener noreferrer" : undefined}
+                    >
+                      {l.label}
+                    </a>
+                  </li>
+                );
+              })}
             </ul>
           </nav>
         ))}

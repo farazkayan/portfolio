@@ -44,7 +44,7 @@ export const AboutSection: React.FC = () => {
           ======================================================== */}
       <section
         id="about"
-        className="scroll-mt-20 relative space-y-12 py-20 sm:space-y-16 sm:py-24 lg:py-28 px-5 sm:px-8 lg:px-12 max-w-6xl mx-auto w-full overflow-hidden"
+        className="scroll-mt-20 relative space-y-12 py-20 sm:space-y-16 sm:py-24 lg:py-28 px-4 xs:px-5 sm:px-8 lg:px-12 max-w-6xl mx-auto w-full overflow-hidden"
       >
         {/* Subtle Destination Atmosphere: Warm Violet */}
         <div
@@ -65,21 +65,25 @@ export const AboutSection: React.FC = () => {
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-5 lg:gap-12 items-start">
             <div className="lg:col-span-6">
               <h2 className="text-2xl xs:text-3xl sm:text-4xl font-medium tracking-tight text-white font-display leading-[1.12]">
-                I see something that doesn’t exist, and I decide to build it.
+                I learn best by actually building things.
               </h2>
             </div>
 
             <div className="lg:col-span-6 space-y-4 text-sm sm:text-[15px] leading-7 text-zinc-400 font-normal">
               <p>
-                I didn’t get into tech with some crazy master plan. Honestly, something
-                about it just naturally attracts me. It’s incredibly satisfying to take a
-                random idea, figure out the pieces, and watch it actually work.
+                I’m a student based in Dhaka. I didn’t get into tech with a corporate
+                master plan or a resume checklist. I just found myself constantly
+                noticing everyday friction—like wanting synchronized audio across our
+                phones when we didn’t have a speaker, or wanting a fast desktop utility
+                that didn’t hog memory—and deciding to solve it myself.
               </p>
               <p>
-                I’m learning Python in school, but most of my real learning happens when
-                I’m just messing around. If I need something to make my life faster, I’ll
-                build it. If I realize I can run my own server, I’ll try it. I basically
-                learn by building.
+                While I study Python in class, the engineering that actually stuck came
+                from hands-on debugging: diagnosing TCP packet drift over local Wi-Fi,
+                keeping self-hosted services alive on an old Dell laptop, and collaborating
+                with friends on real builds. Curiosity, real technical problems, and
+                having the persistence to fix what breaks matter far more to me than
+                impressive-sounding jargon.
               </p>
             </div>
           </div>
@@ -166,7 +170,7 @@ export const AboutSection: React.FC = () => {
           ======================================================== */}
       <section
         id="education"
-        className="scroll-mt-20 relative py-20 sm:py-24 lg:py-28 px-5 sm:px-8 lg:px-12 max-w-6xl mx-auto w-full overflow-hidden"
+        className="scroll-mt-20 relative py-20 sm:py-24 lg:py-28 px-4 xs:px-5 sm:px-8 lg:px-12 max-w-6xl mx-auto w-full overflow-hidden"
       >
         {/* Subtle Destination Atmosphere: Cool Blue */}
         <div

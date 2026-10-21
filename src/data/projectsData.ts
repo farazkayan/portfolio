@@ -79,7 +79,7 @@ export const projects: ProjectData[] = [
     story:
       'We had an everyday problem with friends: we wanted to watch something together loudly, had multiple phones sitting on the table, but no dedicated speaker. Existing apps were either broken, required active internet connections, or introduced unbearable audio lag. We needed a local-first tool that just worked over Wi-Fi or hotspot, so we built it.',
     overview:
-      'SoundMesh is a local-first mobile app that lets nearby phones work together as synchronized speakers with zero cloud servers and zero internet dependency.',
+      'SoundMesh operates entirely on a local Wi-Fi or ad-hoc hotspot network. One device acts as the audio coordinator, streaming audio in real-time to receiver devices that buffer and synchronize playback using monotonic timestamps—eliminating the need for internet access or third-party servers.',
     collaboration: {
       myRole: 'Backend / Core',
       collaboratorName: 'Mahin',
@@ -88,14 +88,14 @@ export const projects: ProjectData[] = [
     },
     role: {
       title: 'Backend / Core',
-      description: 'My role was the entire backend and systems architecture.',
+      description: 'I designed and implemented the networking engine, synchronization protocol, and native audio pipeline, while Mahin built the UI and frontend.',
       areas: [
-        'Room / Core logic',
-        'TCP socket communication',
-        'Local device discovery',
-        'Audio packet transport',
-        'Monotonic timing sync',
-        'Contract testing & ADB debugging',
+        'Room coordinator & session management',
+        'TCP socket protocol & streaming',
+        'Local device discovery & handshakes',
+        'Audio packetization & jitter buffering',
+        'Monotonic clock drift compensation',
+        'Cross-device testing & ADB profiling',
       ],
     },
     theHardPart:
@@ -161,7 +161,9 @@ export const projects: ProjectData[] = [
     story:
       'Avero started from an authentic personal desire, not a tutorial. Social media turns shared moments into public performances, while standard photo libraries are disorganized and flat. Avero is an intimate, private memory space where trips, milestones, and shared history live forever pinned to physical coordinates.',
     overview:
-      'Avero is just a dedicated place for keeping things. It lets you pin memories to actual locations on a map, sort them in a timeline, and basically keep a history of everything you want to remember.',
+      'Avero combines interactive map pinning with chronological timelines to preserve personal milestones and shared history. By isolating private vaults behind edge-authenticated URLs and strict PostgreSQL Row-Level Security, it gives friends a quiet digital home free from public social algorithms and feed clutter.',
+    theHardPart:
+      'Balancing geospatial rendering with secure media delivery. Uploading and previewing large media assets required signed Backblaze B2 URLs routed through Cloudflare Workers for edge caching, paired with clustered Leaflet pins to keep client-side map interactions responsive.',
     capabilities: [
       {
         title: 'Secure Media Storage',
@@ -254,7 +256,9 @@ export const projects: ProjectData[] = [
     story:
       'I was wasting time setting up dev environments, managing local files, and doing repetitive tasks by hand. I didn’t want a bloated web wrapper or another browser tab. I wanted a fast native tool sitting directly on my computer. So I built what I actually needed.',
     overview:
-      'Nexus is a local desktop utility designed to eliminate repetitive developer friction, supervise system processes, and automate desktop workflows.',
+      'Nexus is a local desktop utility designed to eliminate repetitive developer friction, supervise system processes, and automate desktop workflows without the memory overhead or startup lag of web-wrapped tools.',
+    theHardPart:
+      'Designing a responsive Qt desktop interface that manages concurrent OS subprocesses and filesystem operations without blocking the main UI thread, while keeping resource consumption under 40 MB of RAM.',
     whatILearned:
       'Building Nexus taught me how to structure standalone desktop applications, manage OS-level processes, work with native window behavior, and use AI effectively to speed up development routines.',
     technicalDetails: {

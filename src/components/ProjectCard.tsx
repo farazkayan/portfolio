@@ -115,15 +115,30 @@ export const ProjectCard: React.FC<ProjectCardProps> = ({
           </div>
         </div>
 
-        <div className="grid items-center gap-6 sm:gap-8 md:grid-cols-[minmax(0,1fr)_180px] lg:grid-cols-[minmax(0,1fr)_210px]">
+        <div className="grid items-center gap-4 sm:gap-8 md:grid-cols-[minmax(0,1fr)_180px] lg:grid-cols-[minmax(0,1fr)_210px]">
           <div>
-            <h3 className="font-display text-3xl font-medium tracking-tight text-white sm:text-4xl lg:text-[2.8rem]">
+            <div className="flex items-center gap-3 mb-2 md:hidden">
+              {project.logoUrl && (
+                <div className={`w-11 h-11 rounded-xl border p-1.5 shrink-0 bg-zinc-950/80 ${theme.iconBg}`}>
+                  <img
+                    src={project.logoUrl}
+                    alt={`${project.title} logo`}
+                    className="h-full w-full object-contain"
+                    loading="lazy"
+                  />
+                </div>
+              )}
+              <h3 className="font-display text-2xl xs:text-3xl font-medium tracking-tight text-white">
+                {project.title}
+              </h3>
+            </div>
+            <h3 className="hidden md:block font-display text-3xl font-medium tracking-tight text-white sm:text-4xl lg:text-[2.8rem]">
               {project.title}
             </h3>
-            <p className="mt-3 max-w-2xl text-sm leading-7 text-zinc-400 sm:text-[15px]">
+            <p className="mt-2 sm:mt-3 max-w-2xl text-sm leading-6 sm:leading-7 text-zinc-400 sm:text-[15px]">
               {project.shortDescription}
             </p>
-            <div className="mt-5 flex flex-wrap gap-2">
+            <div className="mt-4 sm:mt-5 flex flex-wrap gap-1.5 sm:gap-2">
               {project.techStack.slice(0, 5).map((tech) => (
                 <span key={tech} className="rounded-full border border-white/[0.07] bg-white/[0.025] px-2.5 py-1 text-[10px] text-zinc-400 sm:text-[11px]">{tech}</span>
               ))}

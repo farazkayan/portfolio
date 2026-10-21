@@ -27,7 +27,7 @@ export const AllProjectsPage: React.FC<AllProjectsPageProps> = ({ onBack }) => {
       {/* ====================================================
           STICKY TOP NAVIGATION BAR (Destination Header)
           ==================================================== */}
-      <header className="sticky top-0 z-50 backdrop-blur-2xl bg-[#141418]/90 border-b border-zinc-800/80 px-5 sm:px-8 lg:px-12 py-3.5 sm:py-4">
+      <header className="sticky top-0 z-50 backdrop-blur-2xl bg-[#141418]/90 border-b border-zinc-800/80 px-4 xs:px-5 sm:px-8 lg:px-12 py-3.5 sm:py-4">
         <div className="max-w-6xl mx-auto flex items-center justify-between">
           <button
             onClick={onBack}
@@ -50,7 +50,7 @@ export const AllProjectsPage: React.FC<AllProjectsPageProps> = ({ onBack }) => {
       {/* ====================================================
           MAIN EDITORIAL PROJECT DESTINATION CANVAS
           ==================================================== */}
-      <main className="flex-1 max-w-6xl mx-auto px-5 sm:px-8 lg:px-12 py-12 sm:py-20 lg:py-24 space-y-12 sm:space-y-16 w-full">
+      <main className="flex-1 max-w-6xl mx-auto px-4 xs:px-5 sm:px-8 lg:px-12 py-10 sm:py-20 lg:py-24 space-y-10 sm:space-y-16 w-full">
         {/* Destination Header with Faraz's Authentic Voice */}
         <div className="space-y-4 border-b border-zinc-800/80 pb-8 sm:pb-10 max-w-3xl">
           <div className="flex items-center gap-2 text-xs font-mono text-purple-400">
@@ -94,7 +94,7 @@ export const AllProjectsPage: React.FC<AllProjectsPageProps> = ({ onBack }) => {
       {/* ====================================================
           FOOTER RETURN ACTION
           ==================================================== */}
-      <footer className="border-t border-zinc-800/80 py-10 sm:py-14 px-5 sm:px-8 lg:px-12 bg-[#09090b]">
+      <footer className="border-t border-zinc-800/80 py-8 sm:py-14 px-4 xs:px-5 sm:px-8 lg:px-12 bg-[#09090b]">
         <div className="max-w-6xl mx-auto flex flex-col xs:flex-row items-center justify-between gap-4">
           <button
             onClick={onBack}
@@ -198,7 +198,7 @@ const ProjectDestinationCard: React.FC<ProjectDestinationCardProps> = ({
           MAIN SUBSTANTIAL PROJECT SURFACE
           Elevated charcoal container with generous editorial layout
           ==================================================== */}
-      <div className="p-5 sm:p-8 lg:p-9 space-y-6 sm:space-y-8">
+      <div className="p-4 xs:p-5 sm:p-8 lg:p-9 space-y-5 sm:space-y-8">
         {/* Top Header Meta Row */}
         <div className="flex flex-wrap items-center justify-between gap-3 border-b border-zinc-800/80 pb-4 sm:pb-5">
           <div className="flex items-center gap-3">

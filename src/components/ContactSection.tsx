@@ -98,7 +98,7 @@ export const ContactSection: React.FC = () => {
   return (
     <section
       id="contact"
-      className="relative scroll-mt-24 sm:scroll-mt-28 py-20 sm:py-24 lg:py-28 px-5 sm:px-8 lg:px-12 max-w-5xl mx-auto w-full"
+      className="relative scroll-mt-24 sm:scroll-mt-28 py-20 sm:py-24 lg:py-28 px-4 xs:px-5 sm:px-8 lg:px-12 max-w-5xl mx-auto w-full"
     >
       {/* Background radial accent glow */}
       <div
@@ -106,7 +106,7 @@ export const ContactSection: React.FC = () => {
         aria-hidden="true"
       />
 
-      <div className="flex flex-col items-center text-center space-y-9 sm:space-y-11">
+      <div className="flex flex-col items-center text-center space-y-8 sm:space-y-11">
         {/* ====================================================
             EYEBROW / THE END LABEL
             ==================================================== */}
@@ -137,7 +137,7 @@ export const ContactSection: React.FC = () => {
             LIVE DHAKA STATUS RADAR PILL
             Personal, real-time proof of life & location
             ==================================================== */}
-        <div className="inline-flex flex-wrap items-center justify-center gap-2.5 sm:gap-3 px-4 py-2 sm:px-5 sm:py-2.5 rounded-full bg-[#1c1c22]/90 border border-zinc-800 text-xs font-mono text-zinc-300 shadow-sm backdrop-blur-md">
+        <div className="inline-flex max-w-full flex-wrap items-center justify-center gap-2 xs:gap-2.5 sm:gap-3 px-3.5 py-2 xs:px-4 sm:px-5 sm:py-2.5 rounded-full bg-[#1c1c22]/90 border border-zinc-800 text-xs font-mono text-zinc-300 shadow-sm backdrop-blur-md">
           <span className="relative flex h-2 w-2">
             <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75" />
             <span className="relative inline-flex rounded-full h-2 w-2 bg-emerald-500" />

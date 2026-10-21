@@ -155,10 +155,10 @@ export const HomelabSection: React.FC = () => {
 
         <div className="space-y-5 pt-1 sm:space-y-6 sm:pt-2">
           <div className="flex flex-col items-center">
-            <div className="flex items-center gap-2 rounded-lg border border-zinc-800 bg-zinc-950/90 px-4 py-2.5 text-xs font-mono text-zinc-200 shadow-sm">
+            <div className="flex flex-wrap items-center justify-center gap-1.5 xs:gap-2 rounded-lg border border-zinc-800 bg-zinc-950/90 px-3 xs:px-4 py-2 xs:py-2.5 text-xs font-mono text-zinc-200 shadow-sm text-center max-w-full">
               <span className="h-1.5 w-1.5 shrink-0 rounded-full bg-emerald-400/80" />
               <span>Dell Inspiron 7348</span>
-              <span className="text-[11px] text-zinc-500">(Ubuntu 24.04 · CasaOS)</span>
+              <span className="text-[10.5px] xs:text-[11px] text-zinc-500">(Ubuntu 24.04 · CasaOS)</span>
             </div>
 
             <div className="h-5 w-px bg-zinc-800 sm:h-6" />

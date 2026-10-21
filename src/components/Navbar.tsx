@@ -40,7 +40,7 @@ export const Navbar: React.FC = () => {
 
     const target = document.getElementById(id);
     if (target) {
-      const navOffset = 80;
+      const navOffset = window.innerWidth < 640 ? 64 : 80;
       const targetTop = target.getBoundingClientRect().top + window.scrollY - navOffset;
       window.scrollTo({
         top: Math.max(0, targetTop),
@@ -174,7 +174,7 @@ export const Navbar: React.FC = () => {
       </a>
 
       {/* Floating Limelight Navigation Bar */}
-      <div className="fixed top-3 sm:top-4 left-1/2 -translate-x-1/2 z-50 max-w-[calc(100vw-0.75rem)] flex items-center justify-center">
+      <div className="fixed top-2.5 xs:top-3 sm:top-4 left-1/2 -translate-x-1/2 z-50 max-w-[calc(100vw-0.75rem)] flex items-center justify-center">
         <LimelightNav
           className="bg-secondary dark:bg-card/50 dark:border-accent/50 rounded-xl shadow-2xl backdrop-blur-md max-w-full"
           items={customNavItems}

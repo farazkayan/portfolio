@@ -20,6 +20,8 @@
   --color-accent: var(--accent);
   --color-accent-foreground: var(--accent-foreground);
   --color-border: var(--border);
+
+  --breakpoint-xs: 400px;
 }
 
 :root {

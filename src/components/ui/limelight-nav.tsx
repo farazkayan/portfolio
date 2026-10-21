@@ -117,7 +117,10 @@ export const LimelightNav = ({
   };
 
   return (
-    <nav className={`relative inline-flex items-center h-14 sm:h-16 rounded-xl bg-card text-foreground border px-1.5 sm:px-2 ${className}`}>
+    <nav
+      aria-label="Primary navigation"
+      className={`relative inline-flex items-center h-12 xs:h-13 sm:h-16 rounded-xl bg-card text-foreground border px-1 xs:px-1.5 sm:px-2 shadow-2xl backdrop-blur-md ${className}`}
+    >
       {items.map(({ id, icon, label, onClick }, index) => {
         const isActive = activeIndex === index;
         return (
@@ -126,10 +129,19 @@ export const LimelightNav = ({
             ref={(el) => {
               navItemRefs.current[index] = el;
             }}
-            className={`relative z-20 flex h-full cursor-pointer items-center justify-center transition-all duration-300 ease-in-out ${
+            role="button"
+            tabIndex={0}
+            aria-current={isActive ? 'page' : undefined}
+            onKeyDown={(e) => {
+              if (e.key === 'Enter' || e.key === ' ') {
+                e.preventDefault();
+                handleItemClick(index, onClick);
+              }
+            }}
+            className={`relative z-20 flex h-full cursor-pointer items-center justify-center transition-all duration-300 ease-in-out focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-purple-400/80 rounded-lg ${
               isActive
-                ? 'px-2.5 xs:px-3 sm:px-4'
-                : 'px-1.5 xs:px-2 sm:px-3'
+                ? 'px-2 xs:px-2.5 sm:px-4'
+                : 'px-1 xs:px-1.5 sm:px-3'
             } ${iconContainerClassName}`}
             onClick={() => handleItemClick(index, onClick)}
             aria-label={label}
@@ -137,18 +149,18 @@ export const LimelightNav = ({
           >
             <span className="flex items-center justify-center">
               {cloneElement(icon as React.ReactElement<{ className?: string }>, {
-                className: `w-5 h-5 sm:w-[22px] sm:h-[22px] transition-all duration-200 ease-in-out shrink-0 ${
+                className: `w-[18px] h-[18px] xs:w-5 xs:h-5 sm:w-[22px] sm:h-[22px] transition-all duration-200 ease-in-out shrink-0 ${
                   isActive ? 'opacity-100 text-white scale-105' : 'opacity-40 text-zinc-400 hover:opacity-75'
                 } ${(icon.props as { className?: string })?.className || ''} ${iconClassName || ''}`,
               })}
 
-              {/* Show the active page title in the navigation bar */}
+              {/* Show the active page title in the navigation bar on tablet and desktop */}
               {label && (
                 <span
                   className={`overflow-hidden whitespace-nowrap text-xs sm:text-[13px] font-medium tracking-tight text-white transition-all duration-300 ease-out select-none ${
                     isActive
-                      ? 'max-w-[120px] opacity-100 ml-1.5 sm:ml-2'
-                      : 'max-w-0 opacity-0 ml-0 pointer-events-none'
+                      ? 'hidden sm:inline-block max-w-[120px] opacity-100 ml-1.5 sm:ml-2'
+                      : 'hidden sm:inline-block max-w-0 opacity-0 ml-0 pointer-events-none'
                   }`}
                 >
                   {label}
