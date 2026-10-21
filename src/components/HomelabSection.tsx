@@ -143,13 +143,11 @@ export const HomelabSection: React.FC = () => {
             </h2>
             <div className="max-w-3xl space-y-2 text-sm leading-7 text-zinc-400 sm:text-[15px]">
               <p>
-                Ubuntu 24.04 and CasaOS run on a Dell Inspiron 7348 with an Intel
-                Core i5-5200U. 4 GB of RAM was last confirmed; an upgrade to 8 GB
-                is unverified.
-              </p>
-              <p>
-                Docker runs the services, and Cloudflare Tunnel provides
-                CGNAT-compatible access.
+                I had an old laptop lying around, so naturally, I turned it into a
+                server. Now it runs my own little ecosystem of self-hosted
+                services, from AI and photo storage to automation and cloud
+                storage. It&apos;s not the most powerful machine, but it&apos;s
+                mine, and it&apos;s taught me a lot about running things myself.
               </p>
             </div>
           </div>

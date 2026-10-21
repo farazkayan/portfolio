@@ -232,8 +232,6 @@ export const ContactSection: React.FC = () => {
         <div className="pt-6 sm:pt-8 border-t border-zinc-900/90 w-full flex flex-col sm:flex-row items-center justify-between gap-3 text-xs font-mono text-zinc-500">
           <div className="flex items-center gap-2">
             <span>© 2026 Faraz Kayan Haque</span>
-            <span className="text-zinc-700">·</span>
-            <span className="text-zinc-400">Response time: usually &lt;24 hours</span>
           </div>
 
           <div className="flex items-center gap-2 text-zinc-400 font-sans italic text-[11px] sm:text-xs">
