@@ -1,5 +1,6 @@
 import React from 'react';
 import { motion } from 'motion/react';
+import { ActivityHeatmapSection } from './ActivityHeatmapSection';
 
 interface BuildStep {
   num: string;
@@ -161,6 +162,14 @@ export const AboutSection: React.FC = () => {
               </div>
             </div>
           </div>
+        </div>
+
+        {/* ----------------------------------------------------
+            ACTIVITY HEATMAP
+            Clean integration matching About tone and cards
+            ---------------------------------------------------- */}
+        <div className="border-t border-zinc-900/80 pt-8 sm:pt-10">
+          <ActivityHeatmapSection />
         </div>
       </section>
 
