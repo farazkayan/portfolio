@@ -485,7 +485,13 @@ const CatsCard: React.FC<CatsCardProps> = ({
 // ------------------------------------------------------------
 // Main Hobbies Section
 // ------------------------------------------------------------
-export const HobbiesSection: React.FC = () => {
+interface HobbiesSectionProps {
+  onExplorePhotography?: () => void;
+}
+
+export const HobbiesSection: React.FC<HobbiesSectionProps> = ({
+  onExplorePhotography,
+}) => {
   const sectionRef = useRef<HTMLElement | null>(null);
   const [isVisible, setIsVisible] = useState(false);
 
@@ -817,21 +823,68 @@ export const HobbiesSection: React.FC = () => {
                 </div>
               </div>
 
-              {/* Card Body */}
-              <p
-                className="
-                  text-xs
-                  sm:text-base
-                  text-zinc-300
-                  font-display
-                  leading-relaxed
-                  relative
-                  z-10
-                "
-              >
-                Taking pictures of things and capturing moments
-                that just feel right.
-              </p>
+              {/* Card Body & CTA */}
+              <div className="space-y-4 relative z-10">
+                <p
+                  className="
+                    text-xs
+                    sm:text-base
+                    text-zinc-300
+                    font-display
+                    leading-relaxed
+                  "
+                >
+                  Taking pictures of things and capturing moments
+                  that just feel right.
+                </p>
+
+                <div className="pt-1">
+                  <button
+                    type="button"
+                    onClick={(e) => {
+                      e.preventDefault();
+                      if (onExplorePhotography) {
+                        onExplorePhotography();
+                      } else {
+                        window.history.pushState(null, '', '/photography');
+                        window.dispatchEvent(new PopStateEvent('popstate'));
+                      }
+                    }}
+                    className="
+                      group/cta
+                      inline-flex
+                      items-center
+                      gap-2.5
+                      px-4
+                      py-2
+                      rounded-xl
+                      bg-sky-950/40
+                      hover:bg-sky-900/60
+                      border
+                      border-sky-500/30
+                      hover:border-sky-400/60
+                      text-xs
+                      sm:text-[13px]
+                      font-mono
+                      text-sky-300
+                      hover:text-white
+                      transition-all
+                      cursor-pointer
+                      min-h-[44px]
+                      touch-manipulation
+                      focus:outline-none
+                      focus:ring-2
+                      focus:ring-sky-400/60
+                    "
+                    aria-label="Explore photography collection"
+                  >
+                    <span className="font-medium">Explore photography</span>
+                    <span className="transition-transform duration-200 group-hover/cta:translate-x-1 text-sky-400">
+                      &rarr;
+                    </span>
+                  </button>
+                </div>
+              </div>
             </article>
           </div>
 

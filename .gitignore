@@ -7,5 +7,7 @@ coverage/
 .env*
 !.env.example
 old_shit/
+.aistudio/
 .aistudio
+/.aistudio/
 metadata.json

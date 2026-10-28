@@ -15,23 +15,43 @@ const AllProjectsPage = lazy(() =>
   }))
 );
 
+const PhotographyPage = lazy(() =>
+  import('./components/PhotographyPage').then((m) => ({
+    default: m.PhotographyPage,
+  }))
+);
+
+type RouteView = 'home' | 'projects' | 'photography';
+
+const getInitialView = (): RouteView => {
+  if (typeof window === 'undefined') return 'home';
+  const path = window.location.pathname;
+  const hash = window.location.hash;
+  const search = window.location.search;
+
+  if (
+    path === '/photography' ||
+    hash === '#/photography' ||
+    search.includes('view=photography')
+  ) {
+    return 'photography';
+  }
+  if (
+    path === '/projects' ||
+    hash === '#/projects' ||
+    search.includes('view=projects')
+  ) {
+    return 'projects';
+  }
+  return 'home';
+};
+
 export default function App() {
-  const [isAllProjectsView, setIsAllProjectsView] = useState(() => {
-    if (typeof window === 'undefined') return false;
-    return (
-      window.location.pathname === '/projects' ||
-      window.location.hash === '#/projects' ||
-      window.location.search.includes('view=projects')
-    );
-  });
+  const [currentView, setCurrentView] = useState<RouteView>(getInitialView);
 
   useEffect(() => {
     const handlePopState = () => {
-      const isProjects =
-        window.location.pathname === '/projects' ||
-        window.location.hash === '#/projects' ||
-        window.location.search.includes('view=projects');
-      setIsAllProjectsView(isProjects);
+      setCurrentView(getInitialView());
     };
 
     window.addEventListener('popstate', handlePopState);
@@ -40,13 +60,13 @@ export default function App() {
 
   const handleGoToAllProjects = () => {
     window.history.pushState(null, '', '/projects');
-    setIsAllProjectsView(true);
+    setCurrentView('projects');
     window.scrollTo({ top: 0, behavior: 'smooth' });
   };
 
-  const handleBackToPortfolio = () => {
+  const handleBackFromProjects = () => {
     window.history.pushState(null, '', '/');
-    setIsAllProjectsView(false);
+    setCurrentView('home');
     window.requestAnimationFrame(() => {
       const target = document.getElementById('projects');
       if (target) {
@@ -57,10 +77,37 @@ export default function App() {
     });
   };
 
-  if (isAllProjectsView) {
+  const handleGoToPhotography = () => {
+    window.history.pushState(null, '', '/photography');
+    setCurrentView('photography');
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  };
+
+  const handleBackFromPhotography = () => {
+    window.history.pushState(null, '', '/');
+    setCurrentView('home');
+    window.requestAnimationFrame(() => {
+      const target = document.getElementById('hobbies');
+      if (target) {
+        target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      } else {
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+      }
+    });
+  };
+
+  if (currentView === 'projects') {
     return (
       <Suspense fallback={<div className="min-h-screen bg-[#141418]" />}>
-        <AllProjectsPage onBack={handleBackToPortfolio} />
+        <AllProjectsPage onBack={handleBackFromProjects} />
+      </Suspense>
+    );
+  }
+
+  if (currentView === 'photography') {
+    return (
+      <Suspense fallback={<div className="min-h-screen bg-[#141418]" />}>
+        <PhotographyPage onBack={handleBackFromPhotography} />
       </Suspense>
     );
   }
@@ -77,7 +124,7 @@ export default function App() {
         <SkillsSection />
         <ProjectsSection onViewAllProjects={handleGoToAllProjects} />
         <HomelabSection />
-        <HobbiesSection />
+        <HobbiesSection onExplorePhotography={handleGoToPhotography} />
         <ContactSection />
         <HalftoneWordmarkFooter
           wordmark="faraz"
