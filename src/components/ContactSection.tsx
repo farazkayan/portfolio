@@ -13,11 +13,10 @@ import { FlowButton } from './ui/flow-button';
 export const ContactSection: React.FC = () => {
   const [copied, setCopied] = useState(false);
   const [dhakaTime, setDhakaTime] = useState('');
-  const [dhakaStatus, setDhakaStatus] = useState('');
 
   const email = 'contact@farazkh.dev';
 
-  // Live Dhaka local time & contextual status
+  // Live Dhaka local time
   useEffect(() => {
     const updateTime = () => {
       try {
@@ -30,26 +29,8 @@ export const ContactSection: React.FC = () => {
           hour12: true,
         }).format(now);
         setDhakaTime(timeString);
-
-        const hourStr = new Intl.DateTimeFormat('en-US', {
-          timeZone: 'Asia/Dhaka',
-          hour: 'numeric',
-          hour12: false,
-        }).format(now);
-        const hour = parseInt(hourStr, 10);
-
-        if (hour >= 1 && hour < 8) {
-          setDhakaStatus('Likely asleep or debugging servers late 🌙');
-        } else if (hour >= 8 && hour < 14) {
-          setDhakaStatus('Student mode & morning coffee ☕');
-        } else if (hour >= 14 && hour < 20) {
-          setDhakaStatus('Building, tinkering & classes ⚡');
-        } else {
-          setDhakaStatus('Online & coding side projects 🚀');
-        }
       } catch {
         setDhakaTime('Dhaka · UTC+6');
-        setDhakaStatus('Available for cool ideas');
       }
     };
 
@@ -134,21 +115,16 @@ export const ContactSection: React.FC = () => {
         </div>
 
         {/* ====================================================
-            LIVE DHAKA STATUS RADAR PILL
-            Personal, real-time proof of life & location
+            LIVE DHAKA TIME PILL
             ==================================================== */}
-        <div className="inline-flex max-w-full flex-wrap items-center justify-center gap-2 xs:gap-2.5 sm:gap-3 px-3.5 py-2 xs:px-4 sm:px-5 sm:py-2.5 rounded-full bg-[#1c1c22]/90 border border-zinc-800 text-xs font-mono text-zinc-300 shadow-sm backdrop-blur-md">
+        <div className="inline-flex max-w-full items-center justify-center gap-2 xs:gap-2.5 px-3.5 py-1.5 xs:px-4 sm:px-4 sm:py-2 rounded-full bg-[#1c1c22]/90 border border-zinc-800 text-xs font-mono text-zinc-300 shadow-sm backdrop-blur-md">
           <span className="relative flex h-2 w-2">
             <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75" />
             <span className="relative inline-flex rounded-full h-2 w-2 bg-emerald-500" />
           </span>
-          <span className="text-zinc-200 font-semibold flex items-center gap-1.5">
+          <span className="text-zinc-200 font-medium flex items-center gap-1.5">
             <Clock className="w-3.5 h-3.5 text-zinc-400" />
             {dhakaTime || 'Dhaka · UTC+6'}
-          </span>
-          <span className="text-zinc-600 hidden xs:inline">·</span>
-          <span className="text-zinc-400 text-[11px] sm:text-xs">
-            Dhaka, BD · {dhakaStatus}
           </span>
         </div>
 
