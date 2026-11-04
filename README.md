@@ -1,6 +1,6 @@
 # Faraz Kayan Haque — Portfolio
 
-> Personal portfolio of Faraz Kayan Haque — student, builder, and tinkerer based in Dhaka.  
+> Personal portfolio of Faraz Kayan Haque — student and builder based in Dhaka, Bangladesh, showcasing software projects, technical experiments, and homelab infrastructure.  
 > **Live Website:** [farazkh.dev](https://farazkh.dev)  
 > **Source Repository:** [github.com/farazkayan/portfolio](https://github.com/farazkayan/portfolio)
 

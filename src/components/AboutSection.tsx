@@ -236,6 +236,10 @@ export const AboutSection: React.FC = () => {
                     <img
                       src="/yale.svg"
                       alt="Yale International School Logo"
+                      width="56"
+                      height="56"
+                      loading="lazy"
+                      decoding="async"
                       className="w-full h-full object-contain"
                     />
                   </div>
@@ -269,6 +273,10 @@ export const AboutSection: React.FC = () => {
                     <img
                       src="/mastermind.svg"
                       alt="Mastermind English Medium School Logo"
+                      width="56"
+                      height="56"
+                      loading="lazy"
+                      decoding="async"
                       className="w-full h-full object-contain"
                     />
                   </div>

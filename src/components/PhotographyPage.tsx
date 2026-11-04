@@ -25,14 +25,20 @@ export const PhotographyPage: React.FC<PhotographyPageProps> = ({ onBack }) => {
       {/* Top Navigation Bar */}
       <header className="sticky top-0 z-40 backdrop-blur-2xl bg-[#141418]/90 border-b border-zinc-800/80 px-4 xs:px-5 sm:px-8 lg:px-12 py-3.5 sm:py-4">
         <div className="max-w-6xl mx-auto flex items-center justify-between">
-          <button
-            onClick={onBack}
+          <a
+            href="/"
+            onClick={(e) => {
+              if (!e.metaKey && !e.ctrlKey && !e.shiftKey && !e.altKey) {
+                e.preventDefault();
+                onBack();
+              }
+            }}
             className="group flex items-center gap-2.5 text-xs font-mono text-zinc-300 hover:text-white transition-colors cursor-pointer min-h-[44px] py-1 touch-manipulation"
-            aria-label="Back to Portfolio"
+            aria-label="Return to Main Portfolio"
           >
             <ArrowLeft className="w-4 h-4 transition-transform group-hover:-translate-x-1 text-sky-400" />
             <span className="font-medium">Return to Portfolio</span>
-          </button>
+          </a>
         </div>
       </header>
 
@@ -84,7 +90,10 @@ export const PhotographyPage: React.FC<PhotographyPageProps> = ({ onBack }) => {
                     <img
                       src={photo.previewUrl}
                       alt={photo.alt}
+                      width={is34 ? 600 : 450}
+                      height={is34 ? 800 : 1000}
                       loading="lazy"
+                      decoding="async"
                       className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
                     />
 
@@ -137,13 +146,20 @@ export const PhotographyPage: React.FC<PhotographyPageProps> = ({ onBack }) => {
           ==================================================== */}
       <footer className="border-t border-zinc-800/80 py-8 sm:py-14 px-4 xs:px-5 sm:px-8 lg:px-12 bg-[#09090b]">
         <div className="max-w-6xl mx-auto flex flex-col xs:flex-row items-center justify-between gap-4">
-          <button
-            onClick={onBack}
+          <a
+            href="/"
+            onClick={(e) => {
+              if (!e.metaKey && !e.ctrlKey && !e.shiftKey && !e.altKey) {
+                e.preventDefault();
+                onBack();
+              }
+            }}
             className="group flex items-center gap-2.5 text-xs font-mono text-zinc-300 hover:text-white transition-colors cursor-pointer min-h-[44px] py-1 touch-manipulation"
+            aria-label="Return to Main Portfolio"
           >
             <ArrowLeft className="w-4 h-4 transition-transform group-hover:-translate-x-1 text-sky-400" />
             <span>Return to Main Portfolio</span>
-          </button>
+          </a>
 
           <div className="flex items-center gap-2 text-xs font-mono text-zinc-500">
             <span>Faraz Kayan Haque</span>

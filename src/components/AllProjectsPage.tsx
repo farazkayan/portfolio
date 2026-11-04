@@ -29,14 +29,20 @@ export const AllProjectsPage: React.FC<AllProjectsPageProps> = ({ onBack }) => {
           ==================================================== */}
       <header className="sticky top-0 z-50 backdrop-blur-2xl bg-[#141418]/90 border-b border-zinc-800/80 px-4 xs:px-5 sm:px-8 lg:px-12 py-3.5 sm:py-4">
         <div className="max-w-6xl mx-auto flex items-center justify-between">
-          <button
-            onClick={onBack}
+          <a
+            href="/"
+            onClick={(e) => {
+              if (!e.metaKey && !e.ctrlKey && !e.shiftKey && !e.altKey) {
+                e.preventDefault();
+                onBack();
+              }
+            }}
             className="group flex items-center gap-2.5 text-xs font-mono text-zinc-300 hover:text-white transition-colors cursor-pointer min-h-[44px] py-1 touch-manipulation"
-            aria-label="Back to Portfolio"
+            aria-label="Return to Main Portfolio"
           >
             <ArrowLeft className="w-4 h-4 transition-transform group-hover:-translate-x-1 text-purple-400" />
             <span className="font-medium">Return to Portfolio</span>
-          </button>
+          </a>
 
           <div className="flex items-center gap-3">
             <span className="text-[11px] font-mono text-zinc-500 uppercase tracking-widest hidden xs:inline">
@@ -96,13 +102,20 @@ export const AllProjectsPage: React.FC<AllProjectsPageProps> = ({ onBack }) => {
           ==================================================== */}
       <footer className="border-t border-zinc-800/80 py-8 sm:py-14 px-4 xs:px-5 sm:px-8 lg:px-12 bg-[#09090b]">
         <div className="max-w-6xl mx-auto flex flex-col xs:flex-row items-center justify-between gap-4">
-          <button
-            onClick={onBack}
+          <a
+            href="/"
+            onClick={(e) => {
+              if (!e.metaKey && !e.ctrlKey && !e.shiftKey && !e.altKey) {
+                e.preventDefault();
+                onBack();
+              }
+            }}
             className="group flex items-center gap-2.5 text-xs font-mono text-zinc-300 hover:text-white transition-colors cursor-pointer min-h-[44px] py-1 touch-manipulation"
+            aria-label="Return to Main Portfolio"
           >
             <ArrowLeft className="w-4 h-4 transition-transform group-hover:-translate-x-1 text-purple-400" />
             <span>Return to Main Portfolio</span>
-          </button>
+          </a>
 
           <div className="flex items-center gap-2 text-xs font-mono text-zinc-500">
             <span>Faraz Kayan Haque</span>
@@ -245,9 +258,12 @@ const ProjectDestinationCard: React.FC<ProjectDestinationCardProps> = ({
             >
               <img
                 src={project.logoUrl}
-                alt={`${project.title} logo`}
+                alt={`${project.title} project logo`}
+                width="112"
+                height="112"
                 className="w-full h-full object-contain"
                 loading="lazy"
+                decoding="async"
               />
             </div>
 

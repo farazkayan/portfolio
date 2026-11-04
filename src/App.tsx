@@ -8,6 +8,7 @@ import { HomelabSection } from './components/HomelabSection';
 import { HobbiesSection } from './components/HobbiesSection';
 import { ContactSection } from './components/ContactSection';
 import HalftoneWordmarkFooter from './components/ui/halftone-wordmark-footer';
+import { updateDocumentSeo } from './utils/seo';
 
 const AllProjectsPage = lazy(() =>
   import('./components/AllProjectsPage').then((m) => ({
@@ -48,6 +49,10 @@ const getInitialView = (): RouteView => {
 
 export default function App() {
   const [currentView, setCurrentView] = useState<RouteView>(getInitialView);
+
+  useEffect(() => {
+    updateDocumentSeo(currentView);
+  }, [currentView]);
 
   useEffect(() => {
     const handlePopState = () => {

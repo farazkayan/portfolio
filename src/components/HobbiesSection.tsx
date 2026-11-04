@@ -839,15 +839,17 @@ export const HobbiesSection: React.FC<HobbiesSectionProps> = ({
                 </p>
 
                 <div className="pt-1">
-                  <button
-                    type="button"
+                  <a
+                    href="/photography"
                     onClick={(e) => {
-                      e.preventDefault();
-                      if (onExplorePhotography) {
-                        onExplorePhotography();
-                      } else {
-                        window.history.pushState(null, '', '/photography');
-                        window.dispatchEvent(new PopStateEvent('popstate'));
+                      if (!e.metaKey && !e.ctrlKey && !e.shiftKey && !e.altKey) {
+                        e.preventDefault();
+                        if (onExplorePhotography) {
+                          onExplorePhotography();
+                        } else {
+                          window.history.pushState(null, '', '/photography');
+                          window.dispatchEvent(new PopStateEvent('popstate'));
+                        }
                       }
                     }}
                     className="
@@ -876,13 +878,13 @@ export const HobbiesSection: React.FC<HobbiesSectionProps> = ({
                       focus:ring-2
                       focus:ring-sky-400/60
                     "
-                    aria-label="Explore photography collection"
+                    aria-label="Explore observational photography collection"
                   >
                     <span className="font-medium">Explore photography</span>
                     <span className="transition-transform duration-200 group-hover/cta:translate-x-1 text-sky-400">
                       &rarr;
                     </span>
-                  </button>
+                  </a>
                 </div>
               </div>
             </article>

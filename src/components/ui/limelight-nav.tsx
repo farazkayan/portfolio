@@ -129,7 +129,8 @@ export const LimelightNav = ({
             ref={(el) => {
               navItemRefs.current[index] = el;
             }}
-            role="button"
+            href={`#${id}`}
+            role="link"
             tabIndex={0}
             aria-current={isActive ? 'page' : undefined}
             onKeyDown={(e) => {
@@ -143,7 +144,12 @@ export const LimelightNav = ({
                 ? 'px-2 xs:px-2.5 sm:px-4'
                 : 'px-1 xs:px-1.5 sm:px-3'
             } ${iconContainerClassName}`}
-            onClick={() => handleItemClick(index, onClick)}
+            onClick={(e) => {
+              if (!e.metaKey && !e.ctrlKey && !e.shiftKey && !e.altKey) {
+                e.preventDefault();
+                handleItemClick(index, onClick);
+              }
+            }}
             aria-label={label}
             title={label}
           >

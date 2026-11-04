@@ -79,19 +79,24 @@ export const ProjectsSection: React.FC<ProjectsSectionProps> = ({
             </span>
           </div>
 
-          <button
-            onClick={() => {
-              if (onViewAllProjects) {
-                onViewAllProjects();
-              } else {
-                window.location.href = '/projects';
+          <a
+            href="/projects"
+            onClick={(e) => {
+              if (!e.metaKey && !e.ctrlKey && !e.shiftKey && !e.altKey) {
+                e.preventDefault();
+                if (onViewAllProjects) {
+                  onViewAllProjects();
+                } else {
+                  window.location.href = '/projects';
+                }
               }
             }}
             className="group inline-flex items-center justify-center gap-2.5 px-5 py-3.5 rounded-xl bg-zinc-900 border border-zinc-700/80 hover:border-zinc-500 text-white font-mono text-xs font-medium hover:bg-zinc-800 transition-all cursor-pointer shadow-sm min-h-[44px] touch-manipulation w-full sm:w-auto"
+            aria-label="View All Projects archive"
           >
             <span>View All Projects</span>
             <ArrowRight className="w-4 h-4 transition-transform group-hover:translate-x-1 text-purple-400" />
-          </button>
+          </a>
         </div>
       </div>
     </section>

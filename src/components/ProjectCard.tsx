@@ -122,9 +122,12 @@ export const ProjectCard: React.FC<ProjectCardProps> = ({
                 <div className={`w-11 h-11 rounded-xl border p-1.5 shrink-0 bg-zinc-950/80 ${theme.iconBg}`}>
                   <img
                     src={project.logoUrl}
-                    alt={`${project.title} logo`}
+                    alt={`${project.title} project logo`}
+                    width="44"
+                    height="44"
                     className="h-full w-full object-contain"
                     loading="lazy"
+                    decoding="async"
                   />
                 </div>
               )}
@@ -150,9 +153,12 @@ export const ProjectCard: React.FC<ProjectCardProps> = ({
             <div className={`hidden aspect-square overflow-hidden rounded-2xl border bg-zinc-950/80 shadow-inner md:block ${theme.iconBg}`}>
               <img
                 src={project.logoUrl}
-                alt={`${project.title} logo`}
+                alt={`${project.title} project logo`}
+                width="210"
+                height="210"
                 className="h-full w-full object-cover"
                 loading="lazy"
+                decoding="async"
               />
             </div>
           )}

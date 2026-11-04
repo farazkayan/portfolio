@@ -1,0 +1,5 @@
+# Robots.txt for https://farazkh.dev
+User-agent: *
+Allow: /
+
+Sitemap: https://farazkh.dev/sitemap.xml
