@@ -25,7 +25,10 @@ test('ventures data includes SAWAH and Faraz Kayan Digital Products with exact r
   assert.equal(digital.primaryAction.url, 'https://shop.farazkh.dev');
   assert.ok(digital.featuredOffering, 'Featured product should exist');
   assert.equal(digital.featuredOffering.name, 'The Student Deadline Kit');
-  assert.equal(digital.featuredOffering.url, 'https://shop.farazkh.dev/l/the-project-kit');
+  assert.equal(
+    digital.featuredOffering.url,
+    'https://shop.farazkh.dev/l/the-student-deadline-kit',
+  );
   assert.equal(digital.featuredOffering.imageUrl, '/ventures/student-deadline-kit.png');
 });
 

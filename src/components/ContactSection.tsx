@@ -9,6 +9,12 @@ import {
   Clock,
 } from 'lucide-react';
 import { FlowButton } from './ui/flow-button';
+import {
+  HandwrittenNote,
+  SketchArrow,
+  SketchSparkle,
+  SketchUnderline,
+} from './ui/HandcraftedMarks';
 
 export const ContactSection: React.FC = () => {
   const [copied, setCopied] = useState(false);
@@ -107,7 +113,14 @@ export const ContactSection: React.FC = () => {
             I don’t know what I’ll build next.
           </h2>
           <p className="text-xl xs:text-2xl sm:text-3xl font-normal tracking-tight text-zinc-400 font-display">
-            That’s kind of the fun part.
+            That’s kind of the{' '}
+            <span className="relative inline-block pb-1 text-zinc-200">
+              fun part.
+              <SketchUnderline
+                variant="squiggle"
+                className="absolute left-0 -bottom-0.5 text-[#E8684A]/70"
+              />
+            </span>
           </p>
           <p className="pt-1 text-xs xs:text-sm sm:text-base text-zinc-400 font-display max-w-lg mx-auto leading-relaxed">
             Have an idea, want to build something, or just want to say hi? I’m probably interested.
@@ -131,14 +144,27 @@ export const ContactSection: React.FC = () => {
         {/* ====================================================
             PRIMARY ACTION: FLOW BUTTON & COPY EMAIL UTILITY
             ==================================================== */}
-        <div className="flex flex-col sm:flex-row items-center justify-center gap-3 w-full max-w-md pt-1">
-          {/* Primary Action Button */}
-          <FlowButton
-            text="Say hello"
-            href={`mailto:${email}`}
-            variant="primary"
-            className="w-full sm:w-auto min-h-[44px]"
-          />
+        <div className="w-full max-w-md pt-1 space-y-2">
+          <div className="flex items-center justify-center gap-1.5">
+            <HandwrittenNote className="text-[16px] text-[#FAF5E8]/65 -rotate-2">
+              always down to build or chat
+            </HandwrittenNote>
+            <SketchArrow
+              direction="down-left"
+              width={20}
+              height={14}
+              className="text-[#E8684A]/75 translate-y-0.5"
+            />
+          </div>
+
+          <div className="flex flex-col sm:flex-row items-center justify-center gap-3 w-full">
+            {/* Primary Action Button */}
+            <FlowButton
+              text="Say hello"
+              href={`mailto:${email}`}
+              variant="primary"
+              className="w-full sm:w-auto min-h-[44px]"
+            />
 
           {/* Quick Copy Email Utility */}
           <button
@@ -162,8 +188,9 @@ export const ContactSection: React.FC = () => {
                 <Copy className="w-3.5 h-3.5" />
                 <span>copy</span>
               </span>
-            )}
-          </button>
+              )}
+            </button>
+          </div>
         </div>
 
 
@@ -212,7 +239,7 @@ export const ContactSection: React.FC = () => {
 
           <div className="flex items-center gap-2 text-zinc-400 font-sans italic text-[11px] sm:text-xs">
             <span>Built because why not.</span>
-            <span className="w-1.5 h-1.5 rounded-full bg-purple-500 inline-block animate-pulse" />
+            <SketchSparkle size={13} className="text-purple-400/80" />
           </div>
         </div>
       </div>

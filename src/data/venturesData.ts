@@ -75,8 +75,8 @@ export const ventures: VentureData[] = [
     featuredOffering: {
       label: 'Featured release',
       name: 'The Student Deadline Kit',
-      subtitle: 'Planner & Assignment Tracker',
-      url: 'https://shop.farazkh.dev/l/the-project-kit',
+      subtitle: 'Get your schoolwork organized. Stay ahead of deadlines.',
+      url: 'https://shop.farazkh.dev/l/the-student-deadline-kit',
       imageUrl: '/ventures/student-deadline-kit.png',
       imageAlt: 'The Student Deadline Kit cover preview',
     },

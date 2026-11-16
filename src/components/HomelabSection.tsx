@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { AnimatePresence, motion } from 'motion/react';
+import { HandwrittenNote, SketchArrow } from './ui/HandcraftedMarks';
 
 interface ServiceItem {
   id: string;
@@ -138,9 +139,14 @@ export const HomelabSection: React.FC = () => {
           </div>
 
           <div className="space-y-2.5 sm:space-y-3">
-            <h2 className="text-2xl xs:text-3xl sm:text-4xl font-medium tracking-tight text-white font-display">
-              Things I run at home.
-            </h2>
+            <div className="flex flex-wrap items-baseline gap-x-3 gap-y-1">
+              <h2 className="text-2xl xs:text-3xl sm:text-4xl font-medium tracking-tight text-white font-display">
+                Things I run at home.
+              </h2>
+              <HandwrittenNote className="text-[16px] text-emerald-300/75 -rotate-1">
+                (repurposed old laptop → tiny personal cloud)
+              </HandwrittenNote>
+            </div>
             <div className="max-w-3xl space-y-2 text-sm leading-7 text-zinc-400 sm:text-[15px]">
               <p>
                 I had an old laptop lying around, so naturally, I turned it into a
@@ -161,20 +167,24 @@ export const HomelabSection: React.FC = () => {
               <span className="text-[10.5px] xs:text-[11px] text-zinc-500">(Ubuntu 24.04 · CasaOS)</span>
             </div>
 
-            <div className="h-5 w-px bg-zinc-800 sm:h-6" />
-            <span aria-hidden="true" className="-my-1 text-[9px] text-zinc-600">▼</span>
+            <SketchArrow
+              direction="down"
+              width={14}
+              height={22}
+              className="my-0.5 text-emerald-400/55"
+            />
 
-            <div className="mt-1 flex items-center gap-2 rounded-lg border border-zinc-800 bg-zinc-950/90 px-4 py-2.5 text-xs font-mono text-zinc-300 shadow-sm">
+            <div className="mt-0.5 flex items-center gap-2 rounded-lg border border-zinc-800 bg-zinc-950/90 px-4 py-2.5 text-xs font-mono text-zinc-300 shadow-sm">
               <span className="h-1.5 w-1.5 shrink-0 rounded-full bg-emerald-400/80" />
               <span>Docker</span>
             </div>
 
-            <div className="h-5 w-px bg-zinc-800 sm:h-6" />
+            <div className="h-5 w-px border-l border-dashed border-emerald-500/40 sm:h-6" />
           </div>
 
           <div className="hidden md:block">
-            <div className="relative h-px w-full bg-zinc-800">
-              <div className="absolute left-1/2 -top-1 h-2 w-px bg-zinc-800" />
+            <div className="relative h-px w-full border-t border-dashed border-zinc-700/80">
+              <div className="absolute left-1/2 -top-1 h-2 w-px bg-emerald-500/50" />
             </div>
             <div className="grid grid-cols-5 gap-3 pt-3">
               {services.map((service) => {
@@ -182,8 +192,23 @@ export const HomelabSection: React.FC = () => {
 
                 return (
                   <div key={service.id} className="flex flex-col items-center">
-                    <div aria-hidden="true" className="-mt-3 mb-1 h-3 w-px bg-zinc-800" />
-                    <span aria-hidden="true" className="-mt-1.5 mb-1 text-[9px] text-zinc-700">▼</span>
+                    <div aria-hidden="true" className="-mt-3 mb-1 h-3 w-px border-l border-dashed border-zinc-700/80" />
+                    <svg
+                      aria-hidden="true"
+                      width="10"
+                      height="8"
+                      viewBox="0 0 10 8"
+                      fill="none"
+                      className="-mt-1 mb-1 text-emerald-400/60"
+                    >
+                      <path
+                        d="M1.5 2L5 6L8.5 2"
+                        stroke="currentColor"
+                        strokeWidth="1.4"
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                      />
+                    </svg>
                     <button
                       type="button"
                       onClick={() => setSelectedId(service.id)}

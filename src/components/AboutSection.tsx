@@ -1,6 +1,12 @@
 import React from 'react';
 import { motion } from 'motion/react';
 import { ActivityHeatmapSection } from './ActivityHeatmapSection';
+import {
+  HandwrittenNote,
+  SketchArrow,
+  SketchAsterisk,
+  SketchUnderline,
+} from './ui/HandcraftedMarks';
 
 interface BuildStep {
   num: string;
@@ -66,7 +72,14 @@ export const AboutSection: React.FC = () => {
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-5 lg:gap-12 items-start">
             <div className="lg:col-span-6">
               <h2 className="text-2xl xs:text-3xl sm:text-4xl font-medium tracking-tight text-white font-display leading-[1.12]">
-                I learn best by actually building things.
+                I learn best by{' '}
+                <span className="relative inline-block pb-1">
+                  actually building things.
+                  <SketchUnderline
+                    variant="arc"
+                    className="absolute left-0 -bottom-0.5 text-purple-300/65"
+                  />
+                </span>
               </h2>
             </div>
 
@@ -101,9 +114,17 @@ export const AboutSection: React.FC = () => {
               <span className="text-zinc-700">/</span>
               <span className="uppercase tracking-widest text-zinc-400">How I build &amp; learn</span>
             </div>
-            <span className="text-purple-300/80 font-mono text-[11px]">
-              the feedback loop
-            </span>
+            <div className="flex items-center gap-1.5">
+              <HandwrittenNote className="text-[16px] text-purple-300/85 -rotate-1">
+                the feedback loop
+              </HandwrittenNote>
+              <SketchArrow
+                direction="down-left"
+                width={20}
+                height={14}
+                className="text-purple-300/70 translate-y-0.5 hidden sm:block"
+              />
+            </div>
           </div>
 
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-2.5 sm:gap-3">
@@ -155,8 +176,12 @@ export const AboutSection: React.FC = () => {
             </div>
 
             <div className="lg:col-span-5 flex flex-col justify-center lg:items-end">
-              <div className="border-l-2 border-purple-500/60 pl-4 py-1.5 max-w-md bg-purple-950/10 rounded-r-lg">
-                <p className="text-xs sm:text-[13.5px] font-display font-medium text-zinc-200 leading-relaxed italic">
+              <div className="relative border-l-2 border-purple-500/60 pl-4 pr-4 py-2 max-w-md bg-purple-950/10 rounded-r-lg">
+                <SketchAsterisk
+                  size={11}
+                  className="absolute top-2 right-2.5 text-[#E8684A]/65"
+                />
+                <p className="text-xs sm:text-[13.5px] font-display font-medium text-zinc-200 leading-relaxed italic pr-4">
                   &ldquo;Technology is the future. You should grow with the tech.&rdquo;
                 </p>
               </div>
@@ -215,6 +240,9 @@ export const AboutSection: React.FC = () => {
             <span className="text-emerald-400 font-medium flex items-center gap-1.5">
               <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse" />
               Present
+              <HandwrittenNote className="text-[14px] text-[#FAF5E8]/55 ml-1 -rotate-2">
+                (still figuring it out)
+              </HandwrittenNote>
             </span>
           </div>
 

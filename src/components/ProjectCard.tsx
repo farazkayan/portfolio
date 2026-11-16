@@ -7,6 +7,11 @@ import {
   Github,
 } from 'lucide-react';
 import { ProjectData } from '../data/projectsData';
+import {
+  HandwrittenNote,
+  SketchArrow,
+  SketchUnderline,
+} from './ui/HandcraftedMarks';
 
 interface ProjectCardProps {
   project: ProjectData;
@@ -91,7 +96,10 @@ export const ProjectCard: React.FC<ProjectCardProps> = ({
                 Project
               </span>
             )}
-            <span className="text-[11px] font-mono text-zinc-600">{project.label.replace(/^\d+ — /, '')}</span>
+            <HandwrittenNote className="text-[15px] text-zinc-500 -rotate-2">
+              {project.label.split(' — ')[0]}
+            </HandwrittenNote>
+            <span className="text-[11px] font-mono text-zinc-500">{project.label.replace(/^\d+ — /, '')}</span>
           </div>
 
           <div className="flex flex-wrap items-center gap-2">
@@ -170,7 +178,14 @@ export const ProjectCard: React.FC<ProjectCardProps> = ({
             className={`group flex items-center gap-2 text-xs font-mono font-medium transition-colors cursor-pointer outline-none min-h-[44px] py-1 touch-manipulation ${theme.buttonText}`}
             aria-expanded={isExpanded}
           >
-            <span>{isExpanded ? 'Hide project details' : 'More about this project'}</span>
+            <span className="relative inline-block pb-0.5">
+              {isExpanded ? 'Hide project details' : 'More about this project'}
+              <SketchUnderline
+                variant="arc"
+                hoverOnly
+                className="absolute left-0 -bottom-0.5 text-current"
+              />
+            </span>
             {isExpanded ? (
               <ChevronUp className="w-4 h-4 transition-transform group-hover:-translate-y-0.5" />
             ) : (
@@ -374,9 +389,13 @@ export const ProjectCard: React.FC<ProjectCardProps> = ({
                           <div className="text-[10px] text-zinc-500 mt-0.5">Audio capture &amp; clock master</div>
                         </div>
 
-                        <div className="text-center text-zinc-500 text-[11px] py-0.5 sm:py-1">
-                          <div className="h-[1px] w-16 bg-gradient-to-r from-sky-500/50 to-emerald-500/50 hidden md:block my-1" />
-                          <span className="text-[10px] sm:text-xs text-zinc-400">▼ Local TCP Network</span>
+                        <div className="flex flex-col items-center text-center text-zinc-500 text-[11px] py-0.5 sm:py-1 gap-1">
+                          <div className="hidden md:flex items-center gap-1.5">
+                            <span className="h-[1px] w-14 border-t border-dashed border-sky-400/50" />
+                            <SketchArrow direction="down-right" width={16} height={12} className="text-emerald-400/75 -rotate-45" />
+                          </div>
+                          <SketchArrow direction="down" width={12} height={18} className="text-sky-400/70 md:hidden" />
+                          <span className="text-[10px] sm:text-xs text-zinc-400">Local TCP Network</span>
                         </div>
 
                         <div className="p-2.5 sm:p-3 rounded-lg bg-zinc-900 border border-zinc-800 text-zinc-200 w-full md:w-auto text-left md:text-right">

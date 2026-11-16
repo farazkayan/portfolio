@@ -12,6 +12,11 @@ import {
   Sparkles,
   ArrowRight,
 } from 'lucide-react';
+import {
+  HandwrittenNote,
+  SketchArrow,
+  SketchUnderline,
+} from './ui/HandcraftedMarks';
 
 interface SkillItem {
   id: string;
@@ -423,9 +428,14 @@ export const SkillsSection: React.FC = () => {
               <h2 className="text-2xl xs:text-3xl sm:text-4xl lg:text-5xl font-medium tracking-tight text-white font-display">
                 Tools I use
               </h2>
-              <p className="text-sm xs:text-base sm:text-lg text-zinc-400 font-display mt-0.5 sm:mt-1">
-                A toolkit built project by project.
-              </p>
+              <div className="flex flex-wrap items-center gap-x-2.5 gap-y-1 mt-0.5 sm:mt-1">
+                <p className="text-sm xs:text-base sm:text-lg text-zinc-400 font-display">
+                  A toolkit built project by project.
+                </p>
+                <HandwrittenNote className="text-[15px] sm:text-base text-teal-300/75 -rotate-1">
+                  — mostly learned mid-bug
+                </HandwrittenNote>
+              </div>
             </div>
 
             <p className="text-xs sm:text-[13.5px] text-zinc-400 max-w-xl font-normal leading-relaxed lg:text-right">
@@ -458,22 +468,20 @@ export const SkillsSection: React.FC = () => {
                   `}
                 >
                   {/* Category Heading & Divider */}
-                  <div className="flex items-center justify-between pb-3 mb-3 sm:mb-4 border-b border-zinc-900">
-                    <div className="flex items-center gap-2.5">
-                      <span className="p-1.5 rounded-lg bg-zinc-900 border border-zinc-800 text-teal-400/90">
+                  <div className="flex flex-wrap items-center justify-between gap-x-3 gap-y-1.5 pb-3 mb-3 sm:mb-4 border-b border-zinc-900">
+                    <div className="flex items-center gap-2.5 min-w-0">
+                      <span className="p-1.5 rounded-lg bg-zinc-900 border border-zinc-800 text-teal-400/90 shrink-0">
                         <Icon className="w-3.5 h-3.5 sm:w-4 sm:h-4" />
                       </span>
-                      <div>
-                        <h3 className="text-xs sm:text-sm font-semibold tracking-wide text-zinc-200 font-mono uppercase">
-                          {cat.title}
-                        </h3>
-                      </div>
+                      <h3 className="text-xs sm:text-sm font-semibold tracking-wide text-zinc-200 font-mono uppercase">
+                        {cat.title}
+                      </h3>
                     </div>
 
                     {cat.badge && (
-                      <span className="text-[10px] sm:text-[11px] font-mono text-teal-400/80 truncate max-w-[150px] sm:max-w-none">
+                      <HandwrittenNote className="text-[14px] sm:text-[15px] text-teal-300/80 -rotate-1 leading-snug">
                         {cat.badge}
-                      </span>
+                      </HandwrittenNote>
                     )}
                   </div>
 
@@ -567,8 +575,13 @@ export const SkillsSection: React.FC = () => {
                   {/* Skill Title & Core Status */}
                   <div className="space-y-1 sm:space-y-1.5">
                     <div className="flex items-center gap-2.5 flex-wrap">
-                      <h4 className="text-xl xs:text-2xl sm:text-3xl font-medium tracking-tight text-white font-display">
+                      <h4 className="relative inline-block pb-1 text-xl xs:text-2xl sm:text-3xl font-medium tracking-tight text-white font-display">
                         {selectedSkill.name}
+                        <SketchUnderline
+                          variant="arc"
+                          revealOnView={false}
+                          className="absolute left-0 -bottom-0.5 text-teal-400/55"
+                        />
                       </h4>
                       {selectedSkill.isCore && (
                         <span className="px-2 py-0.5 rounded-full bg-teal-950/40 text-[10px] font-mono text-teal-300 border border-teal-500/30">
@@ -607,8 +620,13 @@ export const SkillsSection: React.FC = () => {
 
                   {/* Optional Personal Note / Context */}
                   {selectedSkill.note && (
-                    <div className="pt-2.5 sm:pt-3 border-t border-zinc-900/80 flex items-start gap-2 text-xs font-mono text-teal-300/90">
-                      <span className="text-zinc-600">↳</span>
+                    <div className="pt-2.5 sm:pt-3 border-t border-zinc-900/80 flex items-center gap-2 text-xs font-mono text-teal-300/90">
+                      <SketchArrow
+                        direction="right-down"
+                        width={16}
+                        height={12}
+                        className="text-teal-400/80"
+                      />
                       <span>{selectedSkill.note}</span>
                     </div>
                   )}

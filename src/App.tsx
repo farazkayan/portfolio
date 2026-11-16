@@ -137,6 +137,7 @@ export default function App() {
           wordmark="faraz"
           label=""
           meta=""
+          note="hand-built in dhaka"
           palette={{
             background: "#141418",
             ink: "#e4e4e7",

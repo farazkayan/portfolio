@@ -2,6 +2,7 @@ import React from 'react';
 import { ArrowRight } from 'lucide-react';
 import { projects } from '../data/projectsData';
 import { ProjectCard } from './ProjectCard';
+import { SketchDivider, SketchUnderline } from './ui/HandcraftedMarks';
 
 interface ProjectsSectionProps {
   onViewAllProjects?: () => void;
@@ -44,7 +45,13 @@ export const ProjectsSection: React.FC<ProjectsSectionProps> = ({
           <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-3 sm:gap-4">
             <div>
               <h2 className="text-2xl xs:text-3xl sm:text-4xl lg:text-5xl font-medium tracking-tight text-white font-display">
-                Featured Work
+                <span className="relative inline-block pb-1">
+                  Featured Work
+                  <SketchUnderline
+                    variant="arc"
+                    className="absolute left-0 -bottom-0.5 text-sky-400/55"
+                  />
+                </span>
               </h2>
               <p className="text-sm xs:text-base sm:text-lg text-zinc-400 font-display mt-0.5 sm:mt-1">
                 Real software built to solve real problems.
@@ -69,15 +76,17 @@ export const ProjectsSection: React.FC<ProjectsSectionProps> = ({
             VIEW ALL PROJECTS BUTTON
             Mobile-first action card
             ==================================================== */}
-        <div className="pt-4 flex flex-col sm:flex-row items-stretch sm:items-center justify-between gap-4 border-t border-zinc-900">
-          <div className="space-y-0.5">
-            <span className="text-xs font-mono text-zinc-300 block font-medium">
-              Looking for more builds?
-            </span>
-            <span className="text-[11px] font-mono text-zinc-500 block">
-              Explore SoundMesh, Avero, and Nexus in the dedicated project archive.
-            </span>
-          </div>
+        <div className="space-y-4">
+          <SketchDivider markClassName="text-sky-400/50" />
+          <div className="flex flex-col sm:flex-row items-stretch sm:items-center justify-between gap-4 pt-1">
+            <div className="space-y-0.5">
+              <span className="text-xs font-mono text-zinc-300 block font-medium">
+                Looking for more builds?
+              </span>
+              <span className="text-[11px] font-mono text-zinc-500 block">
+                Explore SoundMesh, Avero, and Nexus in the dedicated project archive.
+              </span>
+            </div>
 
           <a
             href="/projects"
@@ -97,6 +106,7 @@ export const ProjectsSection: React.FC<ProjectsSectionProps> = ({
             <span>View All Projects</span>
             <ArrowRight className="w-4 h-4 transition-transform group-hover:translate-x-1 text-purple-400" />
           </a>
+          </div>
         </div>
       </div>
     </section>

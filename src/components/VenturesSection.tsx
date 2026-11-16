@@ -1,6 +1,29 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { ArrowUpRight } from 'lucide-react';
 import { ventures, VentureData } from '../data/venturesData';
+import {
+  FeaturedOfferingViewModel,
+  LatestReleaseResponse,
+  resolveFeaturedOfferingViewModel,
+} from '../utils/gumroadLatestRelease';
+
+let cachedLatestReleasePromise: Promise<LatestReleaseResponse | null> | null = null;
+
+function loadLatestReleaseOnce(): Promise<LatestReleaseResponse | null> {
+  if (!cachedLatestReleasePromise) {
+    cachedLatestReleasePromise = fetch('/api/ventures/latest-release', {
+      headers: { Accept: 'application/json' },
+    })
+      .then(async (res) => {
+        if (!res.ok) return null;
+        const data = (await res.json()) as LatestReleaseResponse;
+        if (!data || typeof data !== 'object' || !('status' in data)) return null;
+        return data;
+      })
+      .catch(() => null);
+  }
+  return cachedLatestReleasePromise;
+}
 
 /* ============================================================================
    CARD 01: SAWAH — Earthy, Minimal, Tactile & Physical Product-Focused
@@ -75,20 +98,11 @@ const SawahVentureCard: React.FC<{ venture: VentureData }> = ({ venture }) => {
 
             {/* Physical Craft Details & Frame Finish Swatches */}
             <div className="flex-1 min-w-0 space-y-3 text-center xs:text-left">
-              <div className="space-y-1">
-                <span className="text-[10px] font-mono uppercase tracking-[0.18em] text-[#B5B09B] block">
-                  Custom Studio · Dhaka
-                </span>
-                <p
-                  style={{ fontFamily: '"Instrument Serif", Georgia, serif' }}
-                  className="text-xl sm:text-2xl text-[#F5F0DC] leading-snug italic"
-                >
-                  Your photos. Given a place.
-                </p>
-              </div>
-
-              <p className="text-[11px] font-mono text-[#D6D0BA]/90 leading-relaxed">
-                Mounted A4 prints · Shatterproof acrylic glazing
+              <p
+                style={{ fontFamily: '"Instrument Serif", Georgia, serif' }}
+                className="text-xl sm:text-2xl text-[#F5F0DC] leading-snug italic"
+              >
+                Your photos. Given a place.
               </p>
 
               {/* Tactile Frame Colour Swatches */}
@@ -174,7 +188,28 @@ const SawahVentureCard: React.FC<{ venture: VentureData }> = ({ venture }) => {
    Palette: Warm notebook cream (#FAF5E8), Ink (#1B1917), Coral (#E8684A), Cobalt (#2F5BEA)
    ============================================================================ */
 const FarazKayanVentureCard: React.FC<{ venture: VentureData }> = ({ venture }) => {
-  const offering = venture.featuredOffering;
+  const [apiResponse, setApiResponse] = useState<LatestReleaseResponse | null>(null);
+  const [imageFailed, setImageFailed] = useState(false);
+
+  useEffect(() => {
+    let active = true;
+    loadLatestReleaseOnce().then((payload) => {
+      if (!active || !payload) return;
+      setApiResponse(payload);
+    });
+    return () => {
+      active = false;
+    };
+  }, []);
+
+  const offering: FeaturedOfferingViewModel | null = resolveFeaturedOfferingViewModel(
+    venture.featuredOffering,
+    apiResponse,
+  );
+
+  useEffect(() => {
+    setImageFailed(false);
+  }, [offering?.imageUrl]);
 
   return (
     <article
@@ -273,7 +308,7 @@ const FarazKayanVentureCard: React.FC<{ venture: VentureData }> = ({ venture }) 
           {venture.description}
         </p>
 
-        {/* Handwritten Note + Arrow + Tangible Featured Product (The Student Deadline Kit) */}
+        {/* Handwritten Note + Arrow + Dynamic Latest Published Product */}
         {offering && (
           <div className="pt-1 space-y-1.5">
             <div className="flex items-center gap-1.5 pl-1">
@@ -281,7 +316,7 @@ const FarazKayanVentureCard: React.FC<{ venture: VentureData }> = ({ venture }) 
                 style={{ fontFamily: '"Caveat", cursive' }}
                 className="text-[17px] leading-none font-semibold text-[#2F5BEA]"
               >
-                psst... check out the kit
+                psst... check out the latest
               </span>
               {/* Hand-drawn curved arrow doodle pointing down-right */}
               <svg
@@ -310,16 +345,27 @@ const FarazKayanVentureCard: React.FC<{ venture: VentureData }> = ({ venture }) 
               className="group/kit flex items-center gap-3.5 sm:gap-4 rounded-xl bg-[#FFFDF8] border-[1.5px] border-[#1B1917] p-3 shadow-[3px_3px_0px_#1B1917] hover:translate-x-[-1px] hover:translate-y-[-1px] hover:shadow-[4px_4px_0px_#1B1917] transition-all focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#2F5BEA] focus-visible:ring-offset-2 focus-visible:ring-offset-[#FAF5E8]"
             >
               {/* Actual Product Cover Thumbnail */}
-              <div className="w-16 h-16 sm:w-[72px] sm:h-[72px] shrink-0 rounded-lg overflow-hidden border border-[#1B1917]/20 bg-[#FAF5E8] -rotate-2 group-hover/kit:rotate-0 transition-transform duration-200">
-                <img
-                  src={offering.imageUrl}
-                  alt={offering.imageAlt}
-                  width="72"
-                  height="72"
-                  loading="lazy"
-                  decoding="async"
-                  className="w-full h-full object-cover"
-                />
+              <div className="w-16 h-16 sm:w-[72px] sm:h-[72px] shrink-0 rounded-lg overflow-hidden border border-[#1B1917]/20 bg-[#FAF5E8] -rotate-2 group-hover/kit:rotate-0 transition-transform duration-200 flex items-center justify-center">
+                {offering.imageUrl && !imageFailed ? (
+                  <img
+                    src={offering.imageUrl}
+                    alt={offering.imageAlt}
+                    width="72"
+                    height="72"
+                    loading="lazy"
+                    decoding="async"
+                    referrerPolicy="no-referrer"
+                    onError={() => setImageFailed(true)}
+                    className="w-full h-full object-cover"
+                  />
+                ) : (
+                  <span
+                    aria-hidden="true"
+                    className="text-xs font-mono font-bold text-[#1B1917]/60 select-none"
+                  >
+                    {offering.name.slice(0, 2).toUpperCase()}
+                  </span>
+                )}
               </div>
 
               <div className="min-w-0 flex-1 space-y-0.5">
@@ -388,7 +434,7 @@ const FarazKayanVentureCard: React.FC<{ venture: VentureData }> = ({ venture }) 
    ============================================================================ */
 const SCALLOP_VALANCE_MASK = `url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='48' height='32' viewBox='0 0 48 32'%3E%3Cpath d='M0 0 H48 V18 Q36 31 24 18 Q12 31 0 18 Z' fill='white'/%3E%3C/svg%3E")`;
 
-const StorefrontFascia: React.FC<{ ventureCount: number }> = ({ ventureCount }) => (
+const StorefrontFascia: React.FC = () => (
   <div className="relative z-10 mx-1 sm:mx-2">
     {/* Stepped timber cornice crown */}
     <div
@@ -415,31 +461,14 @@ const StorefrontFascia: React.FC<{ ventureCount: number }> = ({ ventureCount }) 
         <span className="absolute -bottom-0.5 -right-0.5 w-1.5 h-1.5 rounded-full bg-[#C9B382]/60" />
       </div>
 
-      <div className="relative z-10 flex flex-col sm:flex-row sm:items-end justify-between gap-4 sm:gap-6">
-        <div className="space-y-2 max-w-2xl">
-          <p className="text-xs font-mono tracking-[0.06em] text-[#C9BC9F]">
-            Independent Arcade · Dhaka
-          </p>
-          <h2
-            id="ventures-heading"
-            style={{ fontFamily: '"Instrument Serif", Georgia, serif' }}
-            className="text-[2.25rem] xs:text-[2.65rem] sm:text-5xl lg:text-[3.35rem] leading-[1.03] tracking-[0.015em] text-[#F4EBDA] font-normal [text-shadow:0_2px_1px_rgba(0,0,0,0.75)]"
-          >
-            Ventures &amp; Independent Work
-          </h2>
-          <p className="text-sm xs:text-base text-[#D3C8B2] font-sans leading-relaxed">
-            Beyond software, I explore ideas, build products, and help create real-world ventures.
-          </p>
-        </div>
-
-        <div className="sm:text-right shrink-0 flex sm:flex-col items-baseline sm:items-end justify-between gap-2 border-t sm:border-t-0 border-[#D7C6A2]/15 pt-3 sm:pt-0">
-          <span className="text-[11px] font-mono tracking-[0.08em] text-[#B7AA8E]">
-            Storefront
-          </span>
-          <span className="text-xs font-mono text-[#E7DBC2] tabular-nums">
-            {ventureCount} Active Ventures
-          </span>
-        </div>
+      <div className="relative z-10">
+        <h2
+          id="ventures-heading"
+          style={{ fontFamily: '"Instrument Serif", Georgia, serif' }}
+          className="text-[2.25rem] xs:text-[2.65rem] sm:text-5xl lg:text-[3.35rem] leading-[1.03] tracking-[0.015em] text-[#F4EBDA] font-normal [text-shadow:0_2px_1px_rgba(0,0,0,0.75)]"
+        >
+          Ventures &amp; Independent Work
+        </h2>
       </div>
     </div>
   </div>
@@ -601,7 +630,7 @@ export const VenturesSection: React.FC = () => {
             4. Painted Window Sill & Wainscot Plinth
             ==================================================== */}
         <div className="relative">
-          <StorefrontFascia ventureCount={ventures.length} />
+          <StorefrontFascia />
           <StorefrontAwning />
 
           {/* Shopfront Surround & Mullioned Display Windows */}
@@ -636,10 +665,10 @@ export const VenturesSection: React.FC = () => {
           />
 
           {/* Painted Timber Wainscot Apron Plinth */}
-          <div className="relative z-10 mx-1 sm:mx-2 bg-[#171411] border-x-2 border-b-2 border-[#3C342B] rounded-b-lg px-4 py-3 sm:px-7 sm:py-3.5 flex flex-wrap items-center justify-between gap-2 text-[11px] font-mono text-[#A3967E]">
-            <span>Open online · Collaborative &amp; independent ventures</span>
-            <span className="text-[#8E826C]">No. 05 · Neighbourhood Arcade</span>
-          </div>
+          <div
+            aria-hidden="true"
+            className="relative z-10 mx-1 sm:mx-2 bg-[#171411] border-x-2 border-b-2 border-[#3C342B] rounded-b-lg h-3 sm:h-3.5"
+          />
         </div>
       </div>
     </section>

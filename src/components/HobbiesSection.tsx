@@ -1,6 +1,7 @@
 import React, { useEffect, useRef, useState } from 'react';
 import { useRive, Layout, Fit, Alignment } from '@rive-app/react-canvas';
 import { Camera, Gamepad2, Tv, Compass } from 'lucide-react';
+import { HandwrittenNote, SketchArrow } from './ui/HandcraftedMarks';
 
 // ------------------------------------------------------------
 // Official Rive Cat Component
@@ -274,29 +275,44 @@ const RiveCat: React.FC<RiveCatProps> = ({
 
   return (
     <div
-      className="
-        absolute bottom-4 right-4 z-0
-        h-[clamp(7rem,22vw,10rem)] w-[clamp(7rem,22vw,10rem)]
-        overflow-hidden rounded-[1.4rem] sm:rounded-[1.7rem]
-        border border-amber-400/25 bg-[radial-gradient(circle_at_50%_38%,rgba(245,158,11,0.12),rgba(12,12,14,0.2)_68%)]
-        shadow-[0_12px_32px_rgba(0,0,0,0.38)]
-        flex items-center justify-center select-none
-        group-hover:border-amber-400/45 transition-colors duration-300
-      "
+      className="pointer-events-none absolute bottom-4 right-4 z-0 flex flex-col items-end gap-1 select-none"
       aria-hidden="true"
     >
+      <div className="hidden sm:flex items-center gap-1 pr-1 opacity-75 group-hover:opacity-100 transition-opacity duration-200">
+        <HandwrittenNote className="text-[14px] text-amber-300/85 -rotate-2">
+          move cursor
+        </HandwrittenNote>
+        <SketchArrow
+          direction="down-right"
+          width={16}
+          height={12}
+          className="text-amber-300/75 translate-y-0.5"
+        />
+      </div>
+
       <div
-        ref={containerRef}
         className="
-          h-[135%] w-[135%]
-          shrink-0
-          pointer-events-none
-          flex
-          items-center
-          justify-center
+          h-[clamp(7rem,22vw,10rem)] w-[clamp(7rem,22vw,10rem)]
+          overflow-hidden rounded-[1.4rem] sm:rounded-[1.7rem]
+          border border-amber-400/25 bg-[radial-gradient(circle_at_50%_38%,rgba(245,158,11,0.12),rgba(12,12,14,0.2)_68%)]
+          shadow-[0_12px_32px_rgba(0,0,0,0.38)]
+          flex items-center justify-center
+          group-hover:border-amber-400/45 transition-colors duration-300
         "
       >
-        <RiveComponent className="w-full h-full" />
+        <div
+          ref={containerRef}
+          className="
+            h-[135%] w-[135%]
+            shrink-0
+            pointer-events-none
+            flex
+            items-center
+            justify-center
+          "
+        >
+          <RiveComponent className="w-full h-full" />
+        </div>
       </div>
     </div>
   );

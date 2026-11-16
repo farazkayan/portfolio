@@ -68,6 +68,8 @@ export interface HalftoneWordmarkFooterProps {
   monoFamily?: string
   /** Root height. A definite length, never a percentage. */
   height?: string
+  /** Optional quiet handwritten note rendered inside the top rule strip. */
+  note?: string
   /** Extra root class names. */
   className?: string
 }
@@ -198,11 +200,18 @@ const HWF_CSS = `
 .hwf-col a:hover, .hwf-up:hover { opacity: 1; background-size: 100% 1px; }
 .hwf-col a:focus-visible, .hwf-up:focus-visible { outline: 1px solid currentColor; outline-offset: 3px; opacity: 1; }
 .hwf-rule {
-  position: relative; z-index: 1; display: flex; justify-content: flex-end; align-items: center; gap: 16px;
+  position: relative; z-index: 1; display: flex; justify-content: flex-end; align-items: center; gap: 14px; flex-wrap: wrap;
   margin: clamp(18px, 2.6vw, 30px) clamp(20px, 3.4vw, 44px) 0; padding-top: 12px;
   border-top: 0.5px solid color-mix(in srgb, var(--hwf-ink) 16%, transparent);
   font-family: var(--hwf-mono); font-size: 10.5px; letter-spacing: .18em; text-transform: uppercase;
 }
+.hwf-note {
+  display: inline-flex; align-items: center; gap: 6px;
+  font-family: "Caveat", cursive; font-size: 16px; font-weight: 500;
+  letter-spacing: 0.02em; text-transform: none; opacity: 0.65;
+  user-select: none;
+}
+.hwf-sep { opacity: 0.3; }
 .hwf-sr { position: absolute; width: 1px; height: 1px; overflow: hidden; clip-path: inset(50%); white-space: nowrap; }
 
 /* Phone & Mobile Optimizations (< 720px) — Desktop remains untouched */
@@ -292,6 +301,7 @@ export default function HalftoneWordmarkFooter({
   fontWeight = 800,
   monoFamily = MONO_STACK,
   height = "520px",
+  note,
   className = "",
 }: HalftoneWordmarkFooterProps) {
   const colors = { ...(PRESETS[preset] || PRESETS.night), ...(palette || {}) }
@@ -602,6 +612,23 @@ export default function HalftoneWordmarkFooter({
         ))}
       </div>
       <div className="hwf-rule">
+        {note ? (
+          <>
+            <span className="hwf-note">
+              <svg width="12" height="12" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                <path
+                  d="M12 2.5C12.7 7.6 13.4 10.3 21.2 12C13.6 13.2 12.8 16.4 12 21.5C11.2 16.4 10.4 13.4 2.8 12C10.4 10.5 11.3 7.6 12 2.5Z"
+                  stroke="#E8684A"
+                  strokeWidth="1.9"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                />
+              </svg>
+              <span>{note}</span>
+            </span>
+            {backToTop ? <span className="hwf-sep" aria-hidden="true">·</span> : null}
+          </>
+        ) : null}
         {backToTop ? (
           <button type="button" className="hwf-up" onClick={toTop}>
             Back to top ↑
