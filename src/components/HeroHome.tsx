@@ -1,187 +1,237 @@
+
 import React from 'react';
 import { motion, useReducedMotion } from 'motion/react';
-import { ArrowDown, ArrowRight, ArrowDownRight } from 'lucide-react';
+import { ArrowDown, ArrowDownRight } from 'lucide-react';
+
 import { ChildhoodPortrait } from './ChildhoodPortrait';
+import { FlowButton } from './ui/flow-button';
 import {
   HandwrittenNote,
   MakerMark,
-  SketchArrow,
   SketchUnderline,
 } from './ui/HandcraftedMarks';
 
 export const HeroHome: React.FC = () => {
   const prefersReducedMotion = useReducedMotion();
 
-  const scrollTo = (id: string) => (event: React.MouseEvent<HTMLElement>) => {
+  const scrollTo = (id: string) => (
+    event: React.MouseEvent<HTMLElement>
+  ) => {
     event.preventDefault();
+
     const target = document.getElementById(id);
     if (!target) return;
+
     window.scrollTo({
-      top: Math.max(0, target.getBoundingClientRect().top + window.scrollY - 75),
-      behavior: 'smooth',
+      top: Math.max(
+        0,
+        target.getBoundingClientRect().top + window.scrollY - 75
+      ),
+      behavior: prefersReducedMotion ? 'auto' : 'smooth',
     });
+
     window.history.replaceState(null, '', `#${id}`);
   };
 
   return (
     <section
       id="home"
-      className="relative flex min-h-[92svh] w-full flex-col justify-between overflow-hidden px-4 xs:px-5 pb-7 pt-24 xs:pt-24 sm:px-8 sm:pb-9 sm:pt-28 lg:px-12"
+      className="relative flex min-h-[92svh] w-full flex-col justify-between overflow-hidden px-4 pb-7 pt-24 xs:px-5 sm:px-8 sm:pb-9 sm:pt-28 lg:px-12"
     >
-      {/* Subtle restrained ambient depth (kept dark and calm on charcoal canvas) */}
-      <div
+      {/* Very subtle warm atmosphere — gently breathing */}
+      <motion.div
+        key={prefersReducedMotion ? 'glow-static' : 'glow-ambient'}
         aria-hidden="true"
-        className="pointer-events-none absolute -right-36 top-16 -z-10 h-[32rem] w-[32rem] rounded-full bg-purple-500/[0.04] blur-[120px]"
+        initial={false}
+        animate={
+          prefersReducedMotion
+            ? { opacity: 0.85, scale: 1 }
+            : { opacity: [0.62, 1, 0.62], scale: [0.985, 1.03, 0.985] }
+        }
+        transition={
+          prefersReducedMotion
+            ? { duration: 0 }
+            : {
+                duration: 13.8,
+                delay: 0.2,
+                repeat: Infinity,
+                ease: 'easeInOut',
+              }
+        }
+        className="pointer-events-none absolute -right-40 top-20 -z-10 h-[30rem] w-[30rem] rounded-full bg-[#E8684A]/[0.04] blur-[120px]"
       />
 
       <motion.div
-        initial={prefersReducedMotion ? { opacity: 1, y: 0 } : { opacity: 0, y: 8 }}
+        initial={
+          prefersReducedMotion
+            ? { opacity: 1, y: 0 }
+            : { opacity: 0, y: 9 }
+        }
         animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: prefersReducedMotion ? 0 : 0.4, ease: [0.16, 1, 0.3, 1] }}
-        className="mx-auto flex w-full max-w-6xl flex-1 flex-col justify-between py-2 sm:py-4"
+        transition={{
+          duration: prefersReducedMotion ? 0 : 0.45,
+          ease: [0.16, 1, 0.3, 1],
+        }}
+        className="mx-auto flex w-full max-w-6xl flex-1 flex-col justify-between py-3 sm:py-5"
       >
-        {/* Top Editorial Datum Strip */}
-        <div className="flex items-center justify-between gap-4 border-b border-zinc-900/90 pb-3.5 text-[11px] font-mono text-zinc-400">
-          <div className="inline-flex items-center gap-2.5">
-            <MakerMark size={16} />
-            <span className="uppercase tracking-[0.16em] text-zinc-300">
-              Student Builder · Dhaka, Bangladesh
-            </span>
-          </div>
-          <span className="hidden sm:inline tracking-[0.14em] uppercase text-zinc-500">
-            Portfolio / 2026
-          </span>
-        </div>
+        {/* Main composition */}
+        <div className="my-auto grid grid-cols-1 items-center gap-10 py-10 sm:py-12 lg:grid-cols-12 lg:gap-10">
 
-        {/* Main Asymmetrical Editorial Spread */}
-        <div className="my-auto grid grid-cols-1 items-center gap-10 py-8 sm:py-10 lg:grid-cols-12 lg:gap-12">
-          {/* Left Column: Art-Directed Typography, Context & Editorial Actions */}
-          <div className="z-10 space-y-6 sm:space-y-7 lg:col-span-7">
-            {/* Stacked Two-Line Name Lockup + Restrained Handwritten Aside */}
-            <div className="space-y-2">
-              <h1
-                aria-label="Faraz Kayan Haque"
-                className="font-display text-[2.75rem] xs:text-[3.25rem] sm:text-6xl lg:text-[4.35rem] xl:text-[4.85rem] font-medium leading-[0.96] tracking-[-0.045em] text-white"
-              >
-                <span className="block">Faraz Kayan</span>
-                <span className="mt-0.5 flex flex-wrap items-baseline gap-x-4 gap-y-1">
-                  <span className="text-[#FAF5E8]">Haque</span>
-                  <HandwrittenNote
-                    aria-hidden="true"
-                    className="text-xl xs:text-2xl sm:text-[1.7rem] text-[#E8684A]/85 -rotate-2 tracking-normal font-medium translate-y-[-2px]"
-                  >
-                    — tinkerer &amp; maker
-                  </HandwrittenNote>
-                </span>
-              </h1>
-            </div>
+          {/* Introduction */}
+          <div className="z-10 lg:col-span-7">
 
-            {/* Preserved Core Tagline + Supporting Context */}
-            <div className="space-y-3.5 max-w-xl">
-              <p className="group font-display text-base xs:text-lg sm:text-[1.35rem] leading-[1.45] text-zinc-200 tracking-[-0.015em]">
-                I see something that doesn’t exist, and I{' '}
-                <span className="relative inline-block pb-1 text-white">
-                  decide to build it.
+            {/* Name */}
+            <h1
+              aria-label="Faraz Kayan Haque"
+              className="font-display text-[clamp(2.7rem,6.4vw,5.8rem)] font-medium leading-[0.98] tracking-[-0.055em] text-white"
+            >
+              <span className="block">Faraz Kayan</span>
+
+              <span className="mt-1 flex flex-wrap items-baseline gap-x-4 gap-y-1">
+                <span className="relative inline-block text-[#FAF5E8]">
+                  Haque
+
                   <SketchUnderline
                     variant="squiggle"
                     revealOnView={false}
-                    className="absolute left-0 -bottom-0.5 text-[#E8684A]/80 transition-opacity duration-200 group-hover:text-[#E8684A]"
+                    className="absolute -bottom-1 left-0 w-full text-[#E8684A]/85"
                   />
                 </span>
+
+                <HandwrittenNote className="rotate-[-4deg] text-lg text-[#E8684A] sm:text-xl">
+                  still curious.
+                </HandwrittenNote>
+              </span>
+            </h1>
+
+            {/* Original tagline */}
+            <div className="mt-9 max-w-xl sm:mt-11">
+              <p className="font-display text-base leading-relaxed tracking-[-0.015em] text-zinc-200 sm:text-xl">
+                I see something that doesn’t exist, and I decide to build it.
               </p>
 
-              <p className="max-w-md text-sm sm:text-[15px] leading-relaxed text-zinc-400 font-normal">
-                I build software, explore technology, and turn ideas into products and
-                independent ventures.
+              <p className="mt-3 max-w-md text-sm leading-relaxed text-zinc-400 sm:text-[15px]">
+                I build software, explore technology, and turn ideas into
+                products and independent ventures.
               </p>
             </div>
 
-            {/* Integrated Primary + Quiet Secondary CTAs */}
-            <div className="flex flex-wrap items-center gap-x-6 gap-y-3 pt-1">
-              <a
+            {/* Original FlowButton + secondary venture link */}
+            <div className="mt-8 flex flex-wrap items-center gap-x-7 gap-y-4 sm:mt-9">
+
+              <FlowButton
+                text="See my projects"
                 href="#projects"
                 onClick={scrollTo('projects')}
-                className="group relative inline-flex min-h-[46px] items-center justify-center gap-3 rounded-xl bg-[#FAF5E8] px-6 py-3 text-sm font-display font-semibold tracking-tight text-[#141418] shadow-[0_12px_28px_rgba(0,0,0,0.45)] transition-all duration-200 hover:bg-white hover:-translate-y-0.5 active:translate-y-0 touch-manipulation focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#FAF5E8] focus-visible:ring-offset-2 focus-visible:ring-offset-[#141418]"
-              >
-                <span>See my projects</span>
-                <ArrowRight
-                  aria-hidden="true"
-                  className="h-4 w-4 text-[#141418] transition-transform duration-200 group-hover:translate-x-1"
-                />
-              </a>
+                variant="primary"
+              />
 
               <a
                 href="#ventures"
                 onClick={scrollTo('ventures')}
-                className="group inline-flex min-h-[44px] items-center gap-1.5 py-2 text-xs sm:text-[13px] font-mono text-zinc-300 transition-colors hover:text-[#FAF5E8] touch-manipulation focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#E8684A] focus-visible:ring-offset-2 focus-visible:ring-offset-[#141418] rounded-md px-1"
+                className="group inline-flex items-center gap-2 py-2 text-sm text-zinc-400 transition-colors hover:text-[#FAF5E8] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#E8684A] focus-visible:ring-offset-4 focus-visible:ring-offset-[#191919]"
               >
-                <span className="relative inline-block pb-1">
-                  Explore ventures
-                  <SketchUnderline
-                    variant="arc"
-                    hoverOnly
-                    className="absolute left-0 -bottom-0.5 text-[#E8684A]/85"
-                  />
-                </span>
+                <span>Explore ventures</span>
+
                 <ArrowDownRight
                   aria-hidden="true"
-                  className="h-3.5 w-3.5 text-zinc-500 transition-transform duration-200 group-hover:translate-x-0.5 group-hover:translate-y-0.5 group-hover:text-[#E8684A]"
+                  className="h-4 w-4 text-[#E8684A] transition-transform duration-200 group-hover:translate-x-0.5 group-hover:translate-y-0.5"
                 />
               </a>
             </div>
           </div>
 
-          {/* Right Column: Art-Directed Halftone Portrait Print Proof */}
-          <div className="z-10 flex flex-col items-center lg:col-span-5 lg:items-end lg:pt-5">
-            <div className="relative flex flex-col items-center lg:items-end">
-              {/* Quiet Margin Annotation Outside the Portrait Frame */}
-              <div className="mb-2.5 flex items-center gap-1.5 self-start sm:ml-2">
-                <HandwrittenNote className="text-[16px] text-[#FAF5E8]/65 -rotate-2">
-                  hover or tap to morph
-                </HandwrittenNote>
-                <SketchArrow
-                  direction="down-right"
-                  width={22}
-                  height={15}
-                  className="text-[#E8684A]/80 translate-y-1"
+          {/* Childhood portrait */}
+          <div className="z-10 flex justify-center lg:col-span-5 lg:justify-end lg:pr-6">
+
+            <div className="relative">
+              {/* Quietly floating signature maker mark anchored outside portrait top-left */}
+              <motion.div
+                key={prefersReducedMotion ? 'maker-static' : 'maker-ambient'}
+                aria-hidden="true"
+                initial={false}
+                animate={
+                  prefersReducedMotion
+                    ? { y: 0, rotate: -2 }
+                    : { y: [0, -4, 0], rotate: [-3, 3.5, -3] }
+                }
+                transition={
+                  prefersReducedMotion
+                    ? { duration: 0 }
+                    : {
+                        duration: 9.2,
+                        delay: 0.7,
+                        repeat: Infinity,
+                        ease: 'easeInOut',
+                      }
+                }
+                className="pointer-events-none absolute -left-5 -top-5 z-20 sm:-left-7 sm:-top-6"
+              >
+                <MakerMark size={20} className="opacity-85" />
+              </motion.div>
+
+              {/* Single quiet offset frame with slow ambient drift */}
+              <div
+                aria-hidden="true"
+                className="pointer-events-none absolute inset-0 translate-x-3 translate-y-3"
+              >
+                <motion.div
+                  key={prefersReducedMotion ? 'frame-static' : 'frame-ambient'}
+                  initial={false}
+                  animate={
+                    prefersReducedMotion
+                      ? { x: 0, y: 0, rotate: 0 }
+                      : { x: [0, 2.5, 0], y: [0, -2, 0], rotate: [0, 0.65, 0] }
+                  }
+                  transition={
+                    prefersReducedMotion
+                      ? { duration: 0 }
+                      : {
+                          duration: 11.6,
+                          delay: 2.1,
+                          repeat: Infinity,
+                          ease: 'easeInOut',
+                        }
+                  }
+                  className="h-full w-full rounded-2xl border border-[#FAF5E8]/15"
                 />
               </div>
 
-              {/* Compositional Print-Proof Backing Plate + Angled Halftone Frame */}
-              <div className="relative">
-                {/* Offset Architectural Hairline Proof Contour (never obscures portrait) */}
-                <div
-                  aria-hidden="true"
-                  className="pointer-events-none absolute inset-0 translate-x-2.5 translate-y-2.5 sm:translate-x-3.5 sm:translate-y-3.5 rounded-2xl sm:rounded-3xl border border-[#FAF5E8]/14 bg-[#1c1c22]/35"
-                >
-                  {/* Subtle top-left & bottom-right print-shop registration corner ticks */}
-                  <span className="absolute -top-1 -left-1 h-2.5 w-2.5 border-t border-l border-[#E8684A]/65" />
-                  <span className="absolute -bottom-1 -right-1 h-2.5 w-2.5 border-b border-r border-[#FAF5E8]/45" />
-                </div>
-
-                {/* Tactile Slightly Angled Placement — Settles Level on Hover/Focus */}
-                <div className="transition-transform duration-500 ease-[cubic-bezier(0.16,1,0.3,1)] lg:-rotate-[1.5deg] hover:rotate-0 focus-within:rotate-0 motion-reduce:rotate-0">
-                  <ChildhoodPortrait className="w-[225px] xs:w-[255px] sm:w-[295px] lg:w-[310px] xl:w-[335px]" />
-                </div>
+              <div
+                className={`relative transition-transform duration-500 ease-out ${
+                  prefersReducedMotion
+                    ? ''
+                    : 'lg:-rotate-[1deg] lg:hover:rotate-0'
+                }`}
+              >
+                <ChildhoodPortrait
+                  className="w-[220px] xs:w-[250px] sm:w-[285px] lg:w-[310px] xl:w-[325px]"
+                />
               </div>
             </div>
           </div>
         </div>
 
-        {/* Bottom Index Edge Bar */}
-        <div className="flex items-center justify-between border-t border-zinc-900/80 pt-4 text-xs font-mono text-zinc-500">
-          <span className="truncate pr-4">
+        {/* Original bottom navigation */}
+        <footer className="flex items-center justify-between gap-4 border-t border-white/[0.09] pt-4 text-xs font-mono text-zinc-500">
+
+          <span className="truncate pr-3">
             Software · Systems · Independent Ventures
           </span>
+
           <a
             href="#about"
             onClick={scrollTo('about')}
-            className="group inline-flex shrink-0 items-center gap-2 py-1 text-zinc-400 transition hover:text-white"
+            className="group inline-flex shrink-0 items-center gap-2 py-1 text-zinc-400 transition-colors hover:text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#E8684A]"
           >
             <span>A little more</span>
-            <ArrowDown className="h-3.5 w-3.5 transition-transform group-hover:translate-y-0.5" />
+
+            <ArrowDown
+              aria-hidden="true"
+              className="h-3.5 w-3.5 transition-transform group-hover:translate-y-0.5"
+            />
           </a>
-        </div>
+        </footer>
       </motion.div>
     </section>
   );
