@@ -33,10 +33,12 @@ export const ProjectCoverArtwork: React.FC<ProjectCoverArtworkProps> = ({
           loading="eager"
           decoding="async"
         />
-        <div
-          aria-hidden="true"
-          className="pointer-events-none absolute inset-0 bg-gradient-to-t from-[#141418]/45 via-transparent to-transparent"
-        />
+        {isModal && (
+          <div
+            aria-hidden="true"
+            className="pointer-events-none absolute inset-0 bg-gradient-to-t from-[#141418]/45 via-transparent to-transparent"
+          />
+        )}
       </div>
     );
   }
@@ -48,10 +50,12 @@ export const ProjectCoverArtwork: React.FC<ProjectCoverArtworkProps> = ({
     return (
       <div className="relative flex h-full w-full items-center justify-center overflow-hidden bg-[#13151d] select-none">
         {/* Soft atmospheric violet + acoustic sky tint */}
-        <div
-          aria-hidden="true"
-          className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_50%_50%,rgba(192,132,252,0.14),rgba(56,189,248,0.06)_42%,transparent_74%)]"
-        />
+        {isModal && (
+          <div
+            aria-hidden="true"
+            className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_50%_50%,rgba(192,132,252,0.14),rgba(56,189,248,0.06)_42%,transparent_74%)]"
+          />
+        )}
 
         {/* Delicate concentric acoustic rings */}
         <svg
@@ -145,10 +149,12 @@ export const ProjectCoverArtwork: React.FC<ProjectCoverArtworkProps> = ({
     return (
       <div className="relative flex h-full w-full items-center justify-center overflow-hidden bg-[#171316] select-none">
         {/* Warm muted coral & bronze ambient bloom */}
-        <div
-          aria-hidden="true"
-          className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_50%_46%,rgba(232,104,74,0.14),rgba(217,175,112,0.06)_42%,transparent_75%)]"
-        />
+        {isModal && (
+          <div
+            aria-hidden="true"
+            className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_50%_46%,rgba(232,104,74,0.14),rgba(217,175,112,0.06)_42%,transparent_75%)]"
+          />
+        )}
 
         {/* Editorial cartographic grid & delicate pinned trajectory */}
         <svg
@@ -222,10 +228,12 @@ export const ProjectCoverArtwork: React.FC<ProjectCoverArtworkProps> = ({
   return (
     <div className="relative flex h-full w-full items-center justify-center overflow-hidden bg-[#151422] select-none">
       {/* Soft violet accent wash */}
-      <div
-        aria-hidden="true"
-        className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_50%_48%,rgba(192,132,252,0.16),rgba(99,102,241,0.06)_45%,transparent_75%)]"
-      />
+      {isModal && (
+        <div
+          aria-hidden="true"
+          className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_50%_48%,rgba(192,132,252,0.16),rgba(99,102,241,0.06)_45%,transparent_75%)]"
+        />
+      )}
 
       {/* Crisp geometric node structure & corner registration marks */}
       <svg

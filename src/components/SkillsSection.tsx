@@ -1,18 +1,6 @@
 import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'motion/react';
 import {
-  Code2,
-  Globe,
-  Database,
-  Cloud,
-  Smartphone,
-  Radio,
-  Terminal,
-  Bot,
-  Sparkles,
-  ArrowRight,
-} from 'lucide-react';
-import {
   HandwrittenNote,
   SketchArrow,
   SketchUnderline,
@@ -32,7 +20,6 @@ interface SkillCategory {
   num: string;
   title: string;
   badge?: string;
-  icon: React.ComponentType<{ className?: string }>;
   skills: SkillItem[];
   isAiCategory?: boolean;
 }
@@ -41,7 +28,6 @@ const categories: SkillCategory[] = [
   {
     num: '01',
     title: 'Languages',
-    icon: Code2,
     skills: [
       {
         id: 'python',
@@ -71,7 +57,6 @@ const categories: SkillCategory[] = [
   {
     num: '02',
     title: 'Web / Frontend',
-    icon: Globe,
     skills: [
       {
         id: 'react',
@@ -128,7 +113,6 @@ const categories: SkillCategory[] = [
   {
     num: '03',
     title: 'Backend & Data',
-    icon: Database,
     skills: [
       {
         id: 'supabase',
@@ -164,7 +148,6 @@ const categories: SkillCategory[] = [
   {
     num: '04',
     title: 'Infrastructure & Deployment',
-    icon: Cloud,
     skills: [
       {
         id: 'cf-pages',
@@ -199,8 +182,7 @@ const categories: SkillCategory[] = [
   {
     num: '05',
     title: 'Mobile & Native',
-    badge: 'SoundMesh took the toolkit outside the browser.',
-    icon: Smartphone,
+    badge: 'beyond the browser',
     skills: [
       {
         id: 'flutter',
@@ -255,7 +237,6 @@ const categories: SkillCategory[] = [
     num: '06',
     title: 'Systems / Networking / Audio',
     badge: 'SoundMesh',
-    icon: Radio,
     skills: [
       {
         id: 'tcp-net',
@@ -297,7 +278,6 @@ const categories: SkillCategory[] = [
   {
     num: '07',
     title: 'Development Tools',
-    icon: Terminal,
     skills: [
       {
         id: 'git',
@@ -335,7 +315,6 @@ const categories: SkillCategory[] = [
     num: '08',
     title: 'AI & Development',
     badge: 'daily workflow',
-    icon: Bot,
     isAiCategory: true,
     skills: [
       {
@@ -393,17 +372,19 @@ export const SkillsSection: React.FC = () => {
     }
   };
 
+  const totalTools = categories.reduce((sum, cat) => sum + cat.skills.length, 0);
+
   return (
     <div className="border-t border-zinc-900/60">
       <section
         id="skills"
-        className="scroll-mt-24 sm:scroll-mt-28 py-20 sm:py-24 lg:py-28 px-4 xs:px-5 sm:px-8 lg:px-12 max-w-6xl mx-auto w-full relative"
+        className="scroll-mt-24 sm:scroll-mt-28 py-12 sm:py-14 lg:py-16 px-4 xs:px-5 sm:px-8 lg:px-12 max-w-6xl mx-auto w-full relative"
       >
         {/* ====================================================
             HEADER & INTRODUCING THE TOOLKIT
             Tone: Technical Teal / Mint
             ==================================================== */}
-        <div className="space-y-4 mb-10 sm:mb-12">
+        <div className="mb-6 sm:mb-8 space-y-2.5">
           <div className="flex items-center justify-between border-b border-zinc-900 pb-3">
             <div className="flex items-center gap-2 text-xs font-mono text-zinc-500">
               <span className="text-teal-400 font-semibold">03</span>
@@ -418,22 +399,22 @@ export const SkillsSection: React.FC = () => {
             </span>
           </div>
 
-          <div className="flex flex-col lg:flex-row lg:items-end justify-between gap-4 sm:gap-6">
+          <div className="flex flex-col lg:flex-row lg:items-end justify-between gap-3 sm:gap-6">
             <div>
-              <h2 className="text-2xl xs:text-3xl sm:text-4xl lg:text-5xl font-medium tracking-tight text-white font-display">
+              <h2 className="text-2xl xs:text-3xl sm:text-4xl lg:text-[2.35rem] font-medium tracking-tight text-white font-display">
                 Tools I use
               </h2>
-              <div className="flex flex-wrap items-center gap-x-2.5 gap-y-1 mt-0.5 sm:mt-1">
-                <p className="text-sm xs:text-base sm:text-lg text-zinc-400 font-display">
+              <div className="flex flex-wrap items-center gap-x-2.5 gap-y-1 mt-0.5">
+                <p className="text-sm xs:text-base sm:text-[17px] text-zinc-400 font-display">
                   A toolkit built project by project.
                 </p>
-                <HandwrittenNote className="text-[15px] sm:text-base text-teal-300/75 -rotate-1">
+                <HandwrittenNote className="text-[15px] sm:text-base text-teal-300/80 -rotate-1">
                   — mostly learned mid-bug
                 </HandwrittenNote>
               </div>
             </div>
 
-            <p className="text-xs sm:text-[13.5px] text-zinc-400 max-w-xl font-normal leading-relaxed lg:text-right">
+            <p className="text-xs sm:text-sm text-zinc-400 max-w-md font-normal leading-relaxed lg:text-right">
               I’m still learning many of these. Here are the tools I’ve picked up by building things and solving problems that mattered to me.
             </p>
           </div>
@@ -441,119 +422,81 @@ export const SkillsSection: React.FC = () => {
 
         {/* ====================================================
             MAIN TWO-COLUMN CATALOG & DETAIL LAYOUT
-            Left (8 Cols): Full Category & Skill Catalog
+            Left (8 Cols): Clean hairline-divided category groups with natural-width tokens
             Right (4 Cols): Sticky Selected Skill Detail Panel
             ==================================================== */}
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 sm:gap-8 lg:gap-12 items-start">
-          {/* Left / Primary Area: All Categories & Skills remain visible */}
-          <div className="lg:col-span-7 xl:col-span-8 grid gap-4 sm:gap-5 lg:grid-cols-1 xl:grid-cols-2">
-            {categories.map((cat) => {
-              const Icon = cat.icon;
-              const isAi = cat.isAiCategory;
-              return (
-                <div
-                  key={cat.num}
-                  className={`
-                    rounded-2xl p-4 sm:p-5 transition-all duration-200 border
-                    ${
-                      isAi
-                        ? 'bg-[#0f0e15]/60 border-purple-900/30'
-                        : 'bg-[#0c0c0e]/75 border-zinc-800/80 hover:border-zinc-700'
-                    }
-                  `}
-                >
-                  {/* Category Heading & Divider */}
-                  <div className="flex flex-wrap items-center justify-between gap-x-3 gap-y-1.5 pb-3 mb-3 sm:mb-4 border-b border-zinc-900">
-                    <div className="flex items-center gap-2.5 min-w-0">
-                      <span className="p-1.5 rounded-lg bg-zinc-900 border border-zinc-800 text-teal-400/90 shrink-0">
-                        <Icon className="w-3.5 h-3.5 sm:w-4 sm:h-4" />
-                      </span>
-                      <h3 className="text-xs sm:text-sm font-semibold tracking-wide text-zinc-200 font-mono uppercase">
-                        {cat.title}
-                      </h3>
-                    </div>
-
-                    {cat.badge && (
-                      <HandwrittenNote className="text-[14px] sm:text-[15px] text-teal-300/80 -rotate-1 leading-snug">
-                        {cat.badge}
-                      </HandwrittenNote>
-                    )}
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 sm:gap-8 lg:gap-9 items-start">
+          {/* Left / Primary Area: Clean, unboxed category groups — zero truncated text */}
+          <div className="lg:col-span-7 xl:col-span-8 grid grid-cols-1 sm:grid-cols-2 gap-x-6 gap-y-4 sm:gap-y-5">
+            {categories.map((cat) => (
+              <div
+                key={cat.num}
+                className="border-t border-zinc-800/75 pt-3"
+              >
+                {/* Category Heading */}
+                <div className="flex items-baseline justify-between gap-2 mb-2">
+                  <div className="flex items-baseline gap-2 min-w-0">
+                    <span className="font-mono text-[11px] tabular-nums text-teal-400/85 shrink-0">
+                      {cat.num}
+                    </span>
+                    <h3 className="text-[13.5px] font-medium tracking-tight text-zinc-100 font-display truncate">
+                      {cat.title}
+                    </h3>
                   </div>
 
-                  {/* Skills Grid: All skills neatly aligned and always visible */}
-                  <div className="grid grid-cols-1 xs:grid-cols-2 gap-2">
-                    {cat.skills.map((skill) => {
-                      const isSelected = selectedSkill.id === skill.id;
-                      return (
-                        <button
-                          key={skill.id}
-                          onClick={() => handleSelectSkill(skill)}
-                          className={`
-                            group relative px-3 py-2.5 sm:px-3.5 sm:py-2.5 rounded-xl text-left transition-all duration-150
-                            border cursor-pointer outline-none flex items-center justify-between min-h-[44px] touch-manipulation focus-visible:ring-2 focus-visible:ring-teal-400/70 focus-visible:ring-offset-2 focus-visible:ring-offset-[#0c0c0e]
-                            ${
-                              isSelected
-                                ? 'bg-teal-950/40 border-teal-500/50 text-white shadow-sm ring-1 ring-teal-500/30'
-                                : skill.isCore
-                                ? 'bg-zinc-900/60 border-zinc-700/80 text-zinc-200 hover:border-teal-500/40 hover:text-white hover:bg-zinc-800/60'
-                                : 'bg-zinc-900/30 border-zinc-800/60 text-zinc-400 hover:border-zinc-700 hover:text-zinc-200 hover:bg-zinc-900/60'
-                            }
-                          `}
-                          aria-label={`Select ${skill.name}`}
-                          aria-pressed={isSelected}
-                        >
-                          <div className="flex items-center gap-2 truncate pr-1">
-                            {skill.isCore && (
-                              <span
-                                className={`w-1.5 h-1.5 rounded-full shrink-0 ${
-                                  isSelected ? 'bg-teal-400' : 'bg-zinc-500'
-                                }`}
-                              />
-                            )}
-                            <span
-                              className={`text-xs sm:text-[13px] font-mono truncate ${
-                                isSelected
-                                  ? 'text-white font-medium'
-                                  : skill.isCore
-                                  ? 'text-zinc-200 font-medium'
-                                  : 'text-zinc-400'
-                              }`}
-                            >
-                              {skill.name}
-                            </span>
-                          </div>
-
-                          <ArrowRight
-                            className={`w-3.5 h-3.5 shrink-0 transition-opacity ${
-                              isSelected
-                                ? 'opacity-100 text-teal-400'
-                                : 'opacity-0 group-hover:opacity-40 text-zinc-400'
-                            }`}
-                          />
-                        </button>
-                      );
-                    })}
-                  </div>
+                  {cat.badge && (
+                    <HandwrittenNote className="text-[13.5px] text-teal-300/75 -rotate-1 shrink-0 leading-none">
+                      {cat.badge}
+                    </HandwrittenNote>
+                  )}
                 </div>
-              );
-            })}
+
+                {/* Natural-width Interactive Tool Tokens (no truncation) */}
+                <div className="flex flex-wrap gap-1.5">
+                  {cat.skills.map((skill) => {
+                    const isSelected = selectedSkill.id === skill.id;
+                    return (
+                      <button
+                        key={skill.id}
+                        type="button"
+                        onClick={() => handleSelectSkill(skill)}
+                        className={`
+                          px-2.5 py-1.5 min-h-[34px] rounded-lg text-[12.5px] sm:text-[13px] font-medium leading-tight
+                          transition-all duration-150 border cursor-pointer whitespace-nowrap
+                          touch-manipulation focus-visible:outline-none focus-visible:ring-2
+                          focus-visible:ring-teal-400/75 focus-visible:ring-offset-2 focus-visible:ring-offset-[#141418]
+                          ${
+                            isSelected
+                              ? 'bg-teal-400/12 border-teal-400/60 text-teal-100 shadow-[0_0_0_1px_rgba(45,212,191,0.16)]'
+                              : skill.isCore
+                              ? 'bg-zinc-900/75 border-zinc-700/75 text-zinc-100 hover:border-teal-400/40 hover:bg-zinc-800/80 hover:text-white'
+                              : 'bg-zinc-900/35 border-zinc-800/80 text-zinc-400 hover:border-zinc-700 hover:bg-zinc-900/75 hover:text-zinc-200'
+                          }
+                        `}
+                        aria-label={`Select ${skill.name}`}
+                        aria-pressed={isSelected}
+                      >
+                        {skill.name}
+                      </button>
+                    );
+                  })}
+                </div>
+              </div>
+            ))}
           </div>
 
-          {/* Right / Secondary Area: Dedicated Sticky Selected Skill Detail Panel */}
+          {/* Right / Secondary Area: Crisp Sticky Tool Inspector */}
           <div
             id="selected-skill-detail"
-            className="lg:col-span-5 xl:col-span-4 lg:sticky lg:top-28 lg:self-start scroll-mt-28"
+            className="lg:col-span-5 xl:col-span-4 lg:sticky lg:top-24 lg:self-start scroll-mt-28"
           >
-              <div className="rounded-2xl bg-[#0c0c0e] border border-zinc-800/90 p-5 sm:p-7 shadow-[0_18px_48px_rgba(0,0,0,0.28)]">
-              {/* Header marker */}
-              <div className="flex items-center justify-between pb-3 sm:pb-3.5 mb-4 sm:mb-5 border-b border-zinc-900 text-xs font-mono">
-                <div className="flex items-center gap-2 text-teal-400">
-                  <Sparkles className="w-3.5 h-3.5" />
-                  <span className="uppercase tracking-widest font-semibold text-[11px]">
-                    Selected Skill
-                  </span>
-                </div>
-                <span className="text-zinc-500 text-[11px]">
+            <div className="rounded-2xl bg-gradient-to-b from-[#1a1a22] to-[#15151a] border border-zinc-800/90 ring-1 ring-inset ring-white/[0.04] p-5 sm:p-6 shadow-[0_20px_50px_rgba(0,0,0,0.34)]">
+              {/* Top Metadata Strip */}
+              <div className="flex items-center justify-between gap-3 pb-3 mb-4 border-b border-zinc-800/70 text-[11px] font-mono">
+                <span className="uppercase tracking-widest text-teal-400 font-medium">
+                  Selected tool
+                </span>
+                <span className="text-zinc-500 truncate">
                   {selectedSkill.category}
                 </span>
               </div>
@@ -565,62 +508,64 @@ export const SkillsSection: React.FC = () => {
                   animate={{ opacity: 1, y: 0 }}
                   exit={{ opacity: 0, y: -4 }}
                   transition={{ duration: 0.15 }}
-                  className="space-y-4 sm:space-y-6"
+                  className="space-y-4"
                 >
-                  {/* Skill Title & Core Status */}
-                  <div className="space-y-1 sm:space-y-1.5">
-                    <div className="flex items-center gap-2.5 flex-wrap">
-                      <h4 className="relative inline-block pb-1 text-xl xs:text-2xl sm:text-3xl font-medium tracking-tight text-white font-display">
+                  {/* Skill Title & Core Metadata (unboxed) */}
+                  <div className="space-y-1">
+                    <div className="flex items-baseline justify-between gap-3 flex-wrap">
+                      <h4 className="relative inline-block pb-1 text-2xl sm:text-[1.75rem] font-medium tracking-tight text-white font-display">
                         {selectedSkill.name}
                         <SketchUnderline
                           variant="arc"
                           revealOnView={false}
-                          className="absolute left-0 -bottom-0.5 text-teal-400/55"
+                          className="absolute left-0 -bottom-0.5 text-teal-400/60"
                         />
                       </h4>
                       {selectedSkill.isCore && (
-                        <span className="px-2 py-0.5 rounded-full bg-teal-950/40 text-[10px] font-mono text-teal-300 border border-teal-500/30">
-                          core
+                        <span className="text-[11px] font-mono text-teal-400/90">
+                          Core stack
                         </span>
                       )}
                     </div>
                   </div>
 
-                  {/* Used In Section */}
-                  <div className="space-y-2 pt-2 border-t border-zinc-900/80">
+                  {/* Used In (clean typographic list with separators, zero pill clutter) */}
+                  <div className="space-y-1.5 pt-3.5 border-t border-zinc-800/70">
                     <span className="text-[11px] font-mono uppercase tracking-wider text-zinc-500 block">
                       Used in
                     </span>
-                    <div className="flex flex-wrap gap-1.5">
-                      {selectedSkill.usedIn.map((project) => (
-                        <span
-                          key={project}
-                          className="px-2.5 py-1 rounded-md bg-zinc-900 border border-zinc-700/80 text-xs font-mono text-zinc-200 font-medium"
-                        >
-                          {project}
-                        </span>
+                    <div className="flex flex-wrap items-center gap-x-2 gap-y-1 text-sm text-zinc-200 font-medium">
+                      {selectedSkill.usedIn.map((project, idx) => (
+                        <React.Fragment key={project}>
+                          {idx > 0 && (
+                            <span aria-hidden="true" className="text-zinc-600">
+                              ·
+                            </span>
+                          )}
+                          <span>{project}</span>
+                        </React.Fragment>
                       ))}
                     </div>
                   </div>
 
-                  {/* What I used it for Section */}
-                  <div className="space-y-1.5 sm:space-y-2 pt-2 border-t border-zinc-900/80">
+                  {/* Context / Usage */}
+                  <div className="space-y-1.5 pt-3.5 border-t border-zinc-800/70">
                     <span className="text-[11px] font-mono uppercase tracking-wider text-zinc-500 block">
                       What I used it for
                     </span>
-                    <p className="text-xs sm:text-sm text-zinc-300 leading-relaxed font-normal">
+                    <p className="text-sm text-zinc-300 leading-relaxed font-normal">
                       {selectedSkill.whatUsedFor}
                     </p>
                   </div>
 
-                  {/* Optional Personal Note / Context */}
+                  {/* Optional Personal Note */}
                   {selectedSkill.note && (
-                    <div className="pt-2.5 sm:pt-3 border-t border-zinc-900/80 flex items-center gap-2 text-xs font-mono text-teal-300/90">
+                    <div className="pt-3 border-t border-zinc-800/70 flex items-center gap-2 text-xs font-mono text-teal-300/90">
                       <SketchArrow
                         direction="right-down"
                         width={16}
                         height={12}
-                        className="text-teal-400/80"
+                        className="text-teal-400/80 shrink-0"
                       />
                       <span>{selectedSkill.note}</span>
                     </div>
@@ -629,10 +574,10 @@ export const SkillsSection: React.FC = () => {
               </AnimatePresence>
             </div>
 
-            {/* Quiet Helpful Hint */}
-            <div className="mt-3 sm:mt-4 px-2 flex items-center justify-between text-[11px] font-mono text-zinc-600">
-              <span>Tap any skill to inspect</span>
-              <span className="text-teal-400/80">38 tools</span>
+            {/* Quiet Footer Hint */}
+            <div className="mt-3 px-1 flex items-center justify-between text-[11px] font-mono text-zinc-500">
+              <span>Select any tool to inspect</span>
+              <span className="text-teal-400/85 tabular-nums">{totalTools} tools</span>
             </div>
           </div>
         </div>
