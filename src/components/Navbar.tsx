@@ -7,7 +7,6 @@ import {
   Code2,
   FolderKanban,
   Store,
-  Server,
   Gamepad2,
   Mail,
 } from 'lucide-react';
@@ -16,10 +15,9 @@ const SECTION_IDS = [
   'home',
   'about',
   'education',
+  'ventures',
   'skills',
   'projects',
-  'ventures',
-  'homelab',
   'hobbies',
   'contact',
 ];
@@ -127,40 +125,34 @@ export const Navbar: React.FC = () => {
       onClick: () => scrollToSection('education', 2),
     },
     {
+      id: 'ventures',
+      icon: <Store />,
+      label: 'Ventures',
+      onClick: () => scrollToSection('ventures', 3),
+    },
+    {
       id: 'skills',
       icon: <Code2 />,
       label: 'Skills',
-      onClick: () => scrollToSection('skills', 3),
+      onClick: () => scrollToSection('skills', 4),
     },
     {
       id: 'projects',
       icon: <FolderKanban />,
       label: 'Projects',
-      onClick: () => scrollToSection('projects', 4),
-    },
-    {
-      id: 'ventures',
-      icon: <Store />,
-      label: 'Ventures',
-      onClick: () => scrollToSection('ventures', 5),
-    },
-    {
-      id: 'homelab',
-      icon: <Server />,
-      label: 'Homelab',
-      onClick: () => scrollToSection('homelab', 6),
+      onClick: () => scrollToSection('projects', 5),
     },
     {
       id: 'hobbies',
       icon: <Gamepad2 />,
       label: 'Hobbies',
-      onClick: () => scrollToSection('hobbies', 7),
+      onClick: () => scrollToSection('hobbies', 6),
     },
     {
       id: 'contact',
       icon: <Mail />,
       label: 'Contact',
-      onClick: () => scrollToSection('contact', 8),
+      onClick: () => scrollToSection('contact', 7),
     },
   ];
 

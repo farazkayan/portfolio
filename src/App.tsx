@@ -5,7 +5,6 @@ import { AboutSection } from './components/AboutSection';
 import { SkillsSection } from './components/SkillsSection';
 import { ProjectsSection } from './components/ProjectsSection';
 import { VenturesSection } from './components/VenturesSection';
-import { HomelabSection } from './components/HomelabSection';
 import { HobbiesSection } from './components/HobbiesSection';
 import { ContactSection } from './components/ContactSection';
 import HalftoneWordmarkFooter from './components/ui/halftone-wordmark-footer';
@@ -130,10 +129,9 @@ export default function App() {
       <main className="relative z-10 flex-1 flex flex-col">
         <HeroHome />
         <AboutSection />
+        <VenturesSection />
         <SkillsSection />
         <ProjectsSection onViewAllProjects={handleGoToAllProjects} />
-        <VenturesSection />
-        <HomelabSection />
         <HobbiesSection onExplorePhotography={handleGoToPhotography} />
         <ContactSection />
         <HalftoneWordmarkFooter

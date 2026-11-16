@@ -343,12 +343,12 @@ const CatsCard: React.FC<CatsCardProps> = ({
         border
         border-zinc-800/90
         p-5
-        sm:p-8
+        sm:p-6
         flex
         flex-col
         justify-between
         space-y-4
-        sm:space-y-6
+        sm:space-y-5
         shadow-[0_12px_40px_rgba(0,0,0,0.35)]
         transition-all
         duration-300
@@ -539,9 +539,9 @@ export const HobbiesSection: React.FC<HobbiesSectionProps> = ({
       className="
         scroll-mt-24
         sm:scroll-mt-28
-        py-20
-        sm:py-24
-        lg:py-28
+        py-12
+        sm:py-14
+        lg:py-16
         px-4
         xs:px-5
         sm:px-8
@@ -551,13 +551,15 @@ export const HobbiesSection: React.FC<HobbiesSectionProps> = ({
         w-full
         relative
         overflow-hidden
+        border-t
+        border-zinc-900/60
       "
     >
-      <div className="space-y-9 sm:space-y-12">
+      <div className="space-y-6 sm:space-y-8">
         {/* ====================================================
             SECTION HEADER
             ==================================================== */}
-        <div className="space-y-3">
+        <div className="space-y-2.5">
           <div
             className="
               flex
@@ -579,7 +581,7 @@ export const HobbiesSection: React.FC<HobbiesSectionProps> = ({
               "
             >
               <span className="text-zinc-400 font-semibold">
-                07
+                05
               </span>
 
               <span className="text-zinc-700">/</span>
@@ -609,13 +611,12 @@ export const HobbiesSection: React.FC<HobbiesSectionProps> = ({
             </span>
           </div>
 
-          <div className="space-y-1 sm:space-y-1.5">
+          <div className="space-y-1">
             <h2
               className="
                 text-2xl
                 xs:text-3xl
                 sm:text-4xl
-                lg:text-5xl
                 font-medium
                 tracking-tight
                 text-white
@@ -642,7 +643,7 @@ export const HobbiesSection: React.FC<HobbiesSectionProps> = ({
         {/* ====================================================
             2 + 3 CARD COMPOSITION
             ==================================================== */}
-        <div className="space-y-4 sm:space-y-6">
+        <div className="space-y-4 sm:space-y-5">
           {/* ==================================================
               TOP ROW: TWO LARGE CARDS
               ================================================== */}
@@ -652,7 +653,7 @@ export const HobbiesSection: React.FC<HobbiesSectionProps> = ({
               grid-cols-1
               md:grid-cols-2
               gap-4
-              sm:gap-6
+              sm:gap-5
             "
           >
             {/* ------------------------------------------------
@@ -676,12 +677,12 @@ export const HobbiesSection: React.FC<HobbiesSectionProps> = ({
                 border
                 border-zinc-800/90
                 p-5
-                sm:p-8
+                sm:p-6
                 flex
                 flex-col
                 justify-between
                 space-y-4
-                sm:space-y-6
+                sm:space-y-5
                 shadow-[0_12px_40px_rgba(0,0,0,0.35)]
                 transition-all
                 duration-300
@@ -902,7 +903,7 @@ export const HobbiesSection: React.FC<HobbiesSectionProps> = ({
               sm:grid-cols-2
               md:grid-cols-3
               gap-4
-              sm:gap-6
+              sm:gap-5
             "
           >
             {/* ------------------------------------------------
@@ -919,12 +920,12 @@ export const HobbiesSection: React.FC<HobbiesSectionProps> = ({
                 border
                 border-zinc-800/90
                 p-5
-                sm:p-7
+                sm:p-6
                 flex
                 flex-col
                 justify-between
-                space-y-4
-                sm:space-y-5
+                space-y-3.5
+                sm:space-y-4
                 shadow-[0_10px_30px_rgba(0,0,0,0.3)]
                 transition-all
                 duration-300
@@ -1078,12 +1079,12 @@ export const HobbiesSection: React.FC<HobbiesSectionProps> = ({
                 border
                 border-zinc-800/90
                 p-5
-                sm:p-7
+                sm:p-6
                 flex
                 flex-col
                 justify-between
-                space-y-4
-                sm:space-y-5
+                space-y-3.5
+                sm:space-y-4
                 shadow-[0_10px_30px_rgba(0,0,0,0.3)]
                 transition-all
                 duration-300
@@ -1232,12 +1233,12 @@ export const HobbiesSection: React.FC<HobbiesSectionProps> = ({
                 border
                 border-zinc-800/90
                 p-5
-                sm:p-7
+                sm:p-6
                 flex
                 flex-col
                 justify-between
-                space-y-4
-                sm:space-y-5
+                space-y-3.5
+                sm:space-y-4
                 shadow-[0_10px_30px_rgba(0,0,0,0.3)]
                 transition-all
                 duration-300

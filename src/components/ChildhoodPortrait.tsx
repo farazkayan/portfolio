@@ -176,7 +176,7 @@ export const ChildhoodPortrait: React.FC<ChildhoodPortraitProps> = ({ className 
   // -------------------------------------------------------------------------
   const triggerMorph = useCallback((toHoverState: boolean) => {
     const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-    const duration = prefersReducedMotion ? 0.35 : 1.15;
+    const duration = prefersReducedMotion ? 0.18 : 1.15;
     const targetValue = toHoverState ? 1 : 0;
 
     setIsHovered(toHoverState);
@@ -218,7 +218,7 @@ export const ChildhoodPortrait: React.FC<ChildhoodPortraitProps> = ({ className 
   return (
     <div
       ref={containerRef}
-      className={`group relative select-none transition-transform duration-500 ease-out ${className}`}
+      className={`group relative select-none transition-transform duration-500 ease-out motion-reduce:transition-none ${className}`}
       style={{
         transform: 'translate3d(var(--parallax-x, 0px), var(--parallax-y, 0px), 0)',
       }}
@@ -226,12 +226,12 @@ export const ChildhoodPortrait: React.FC<ChildhoodPortraitProps> = ({ className 
       {/* Soft ambient violet glow behind the portrait card */}
       <div
         aria-hidden="true"
-        className="pointer-events-none absolute -inset-2 sm:-inset-3 -z-10 rounded-[2rem] bg-purple-500/12 blur-2xl transition-opacity duration-500 group-hover:bg-purple-500/25"
+        className="pointer-events-none absolute -inset-2 sm:-inset-3 -z-10 rounded-[2rem] bg-purple-500/12 blur-2xl transition-opacity duration-500 group-hover:bg-purple-500/22"
       />
 
       {/* Main Photo Card Container */}
       <div
-        className={`photo-card relative overflow-hidden rounded-2xl sm:rounded-3xl bg-[#f4f1ea] border border-white/20 p-2.5 sm:p-3 shadow-[0_20px_50px_rgba(0,0,0,0.55)] transition-all duration-300 group-hover:shadow-[0_25px_60px_rgba(192,132,252,0.2)] group-hover:-translate-y-1 cursor-pointer focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-purple-400 focus-visible:ring-offset-2 focus-visible:ring-offset-[#141418] ${
+        className={`photo-card relative overflow-hidden rounded-2xl sm:rounded-3xl bg-[#f4f1ea] border border-white/25 p-2.5 sm:p-3 shadow-[0_20px_50px_rgba(0,0,0,0.55)] transition-all duration-300 group-hover:shadow-[0_24px_56px_rgba(192,132,252,0.18)] group-hover:-translate-y-1 motion-reduce:transition-none motion-reduce:group-hover:translate-y-0 active:scale-[0.99] motion-reduce:active:scale-100 cursor-pointer focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-purple-400 focus-visible:ring-offset-2 focus-visible:ring-offset-[#141418] ${
           isAnimating ? 'will-change-transform' : ''
         }`}
         onPointerEnter={handlePointerEnter}
@@ -239,6 +239,7 @@ export const ChildhoodPortrait: React.FC<ChildhoodPortraitProps> = ({ className 
         onClick={handleClick}
         role="button"
         tabIndex={0}
+        aria-pressed={isHovered}
         aria-label="Interactive morphing halftone childhood portrait. Hover, tap, or press Enter to transform."
         onKeyDown={(e) => {
           if (e.key === 'Enter' || e.key === ' ') {
@@ -258,7 +259,7 @@ export const ChildhoodPortrait: React.FC<ChildhoodPortraitProps> = ({ className 
         />
 
         {/* 60FPS Halftone Morphing Canvas with fixed aspect ratio */}
-        <div className="relative aspect-[3/4] w-full overflow-hidden rounded-xl sm:rounded-2xl bg-[#eae6de]">
+        <div className="relative aspect-[3/4] w-full overflow-hidden rounded-xl sm:rounded-2xl bg-[#eae6de] ring-1 ring-black/[0.06]">
           <canvas
             ref={canvasRef}
             className="w-full h-full object-cover block pointer-events-none"
@@ -268,10 +269,10 @@ export const ChildhoodPortrait: React.FC<ChildhoodPortraitProps> = ({ className 
 
         {/* Minimal editorial caption with micro-interaction */}
         <div className="mt-2 sm:mt-2.5 flex items-center justify-between px-1 text-[10px] sm:text-[11px] font-mono select-none">
-          <span className="tracking-widest uppercase text-zinc-700 font-medium transition-colors duration-300 group-hover:text-purple-900">
+          <span className="tracking-widest uppercase text-zinc-800 font-medium transition-colors duration-300 group-hover:text-purple-900">
             ME
           </span>
-          <span className="text-zinc-500 tracking-wider text-[9px] uppercase transition-opacity duration-300 opacity-60 group-hover:opacity-100">
+          <span className="text-zinc-600 tracking-wider text-[9px] uppercase transition-opacity duration-300 opacity-80 group-hover:opacity-100">
             {isHovered ? 'State II' : 'Hover / Tap'}
           </span>
         </div>

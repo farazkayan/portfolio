@@ -22,10 +22,11 @@ export const HeroHome: React.FC = () => {
     const target = document.getElementById(id);
     if (!target) return;
 
+    const navOffset = window.innerWidth < 640 ? 64 : 80;
     window.scrollTo({
       top: Math.max(
         0,
-        target.getBoundingClientRect().top + window.scrollY - 75
+        target.getBoundingClientRect().top + window.scrollY - navOffset
       ),
       behavior: prefersReducedMotion ? 'auto' : 'smooth',
     });
@@ -36,29 +37,33 @@ export const HeroHome: React.FC = () => {
   return (
     <section
       id="home"
-      className="relative flex min-h-[92svh] w-full flex-col justify-between overflow-hidden px-4 pb-7 pt-24 xs:px-5 sm:px-8 sm:pb-9 sm:pt-28 lg:px-12"
+      aria-labelledby="hero-heading"
+      className="relative flex min-h-[92svh] w-full flex-col justify-between overflow-x-clip px-4 pb-6 pt-[4.25rem] xs:px-5 sm:px-8 sm:pb-8 sm:pt-24 md:pt-28 lg:px-12"
     >
-      {/* Very subtle warm atmosphere — gently breathing */}
+      {/* Single restrained, slowly drifting atmospheric accent (compositor-only) */}
       <motion.div
-        key={prefersReducedMotion ? 'glow-static' : 'glow-ambient'}
+        key={prefersReducedMotion ? 'atmosphere-static' : 'atmosphere-drift'}
         aria-hidden="true"
         initial={false}
         animate={
           prefersReducedMotion
-            ? { opacity: 0.85, scale: 1 }
-            : { opacity: [0.62, 1, 0.62], scale: [0.985, 1.03, 0.985] }
+            ? { opacity: 0.75, x: 0, y: 0 }
+            : {
+                opacity: [0.55, 0.9, 0.55],
+                x: [0, -18, 10, 0],
+                y: [0, 14, -8, 0],
+              }
         }
         transition={
           prefersReducedMotion
             ? { duration: 0 }
             : {
-                duration: 13.8,
-                delay: 0.2,
+                duration: 18,
                 repeat: Infinity,
                 ease: 'easeInOut',
               }
         }
-        className="pointer-events-none absolute -right-40 top-20 -z-10 h-[30rem] w-[30rem] rounded-full bg-[#E8684A]/[0.04] blur-[120px]"
+        className="pointer-events-none absolute -right-32 top-16 -z-10 h-[28rem] w-[28rem] rounded-full bg-[radial-gradient(circle,rgba(192,132,252,0.06)_0%,rgba(232,104,74,0.035)_48%,transparent_72%)] blur-3xl will-change-transform"
       />
 
       <motion.div
@@ -72,22 +77,34 @@ export const HeroHome: React.FC = () => {
           duration: prefersReducedMotion ? 0 : 0.45,
           ease: [0.16, 1, 0.3, 1],
         }}
-        className="mx-auto flex w-full max-w-6xl flex-1 flex-col justify-between py-3 sm:py-5"
+        className="mx-auto flex w-full max-w-6xl flex-1 flex-col justify-between py-2 sm:py-4"
       >
         {/* Main composition */}
-        <div className="my-auto grid grid-cols-1 items-center gap-10 py-10 sm:py-12 lg:grid-cols-12 lg:gap-10">
+        <div className="my-auto grid grid-cols-1 items-center gap-6 py-3 sm:gap-9 sm:py-8 md:grid-cols-12 md:gap-8 lg:gap-10 lg:py-10">
+          {/* Primary & Secondary Text Stack */}
+          <div className="z-10 md:col-span-7">
+            {/* Tertiary layer: quiet personal-builder & location identification */}
+            <p className="mb-3 flex flex-wrap items-center gap-x-2 gap-y-1 font-mono text-[11px] tracking-[0.03em] text-zinc-400 sm:mb-4 sm:text-xs">
+              <span className="whitespace-nowrap text-[#FAF5E8]/90">
+                Student &amp; builder
+              </span>
+              <span className="inline-flex items-center gap-x-2 whitespace-nowrap">
+                <span aria-hidden="true" className="text-zinc-600">
+                  ·
+                </span>
+                <span>Dhaka, Bangladesh</span>
+              </span>
+            </p>
 
-          {/* Introduction */}
-          <div className="z-10 lg:col-span-7">
-
-            {/* Name */}
+            {/* Primary layer: Name + restrained handwritten annotation */}
             <h1
+              id="hero-heading"
               aria-label="Faraz Kayan Haque"
-              className="font-display text-[clamp(2.7rem,6.4vw,5.8rem)] font-medium leading-[0.98] tracking-[-0.055em] text-white"
+              className="font-display text-[clamp(2.45rem,6.1vw,5.4rem)] font-medium leading-[0.98] tracking-[-0.05em] text-white"
             >
               <span className="block">Faraz Kayan</span>
 
-              <span className="mt-1 flex flex-wrap items-baseline gap-x-4 gap-y-1">
+              <span className="mt-1 flex flex-wrap items-baseline gap-x-3.5 gap-y-1 sm:gap-x-4">
                 <span className="relative inline-block text-[#FAF5E8]">
                   Haque
 
@@ -104,21 +121,20 @@ export const HeroHome: React.FC = () => {
               </span>
             </h1>
 
-            {/* Original tagline */}
-            <div className="mt-9 max-w-xl sm:mt-11">
-              <p className="font-display text-base leading-relaxed tracking-[-0.015em] text-zinc-200 sm:text-xl">
+            {/* Primary lead statement + Secondary supporting context */}
+            <div className="mt-5 max-w-xl sm:mt-8 lg:mt-10">
+              <p className="font-display text-[17px] leading-snug tracking-[-0.015em] text-zinc-100 sm:text-xl lg:text-[22px]">
                 I see something that doesn’t exist, and I decide to build it.
               </p>
 
-              <p className="mt-3 max-w-md text-sm leading-relaxed text-zinc-400 sm:text-[15px]">
-                I build software, explore technology, and turn ideas into
-                products and independent ventures.
+              <p className="mt-2 max-w-lg text-sm leading-relaxed text-zinc-400 sm:mt-3 sm:text-[15px]">
+                Building software, technical experiments, and
+                small independent ventures—learning by making real things work.
               </p>
             </div>
 
-            {/* Original FlowButton + secondary venture link */}
-            <div className="mt-8 flex flex-wrap items-center gap-x-7 gap-y-4 sm:mt-9">
-
+            {/* CTA Arrangement: Primary FlowButton + quiet secondary paths */}
+            <div className="mt-5 flex flex-wrap items-center gap-x-6 gap-y-2.5 sm:mt-8 sm:gap-y-3">
               <FlowButton
                 text="See my projects"
                 href="#projects"
@@ -126,95 +142,69 @@ export const HeroHome: React.FC = () => {
                 variant="primary"
               />
 
-              <a
-                href="#ventures"
-                onClick={scrollTo('ventures')}
-                className="group inline-flex items-center gap-2 py-2 text-sm text-zinc-400 transition-colors hover:text-[#FAF5E8] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#E8684A] focus-visible:ring-offset-4 focus-visible:ring-offset-[#191919]"
-              >
-                <span>Explore ventures</span>
+              <div className="flex flex-wrap items-center gap-x-5 gap-y-1">
+                <a
+                  href="#ventures"
+                  onClick={scrollTo('ventures')}
+                  className="group inline-flex min-h-11 items-center gap-1.5 rounded-md py-2 text-sm text-zinc-300 transition-colors hover:text-[#FAF5E8] active:text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#E8684A] focus-visible:ring-offset-4 focus-visible:ring-offset-[#141418]"
+                >
+                  <span>Explore ventures</span>
+                  <ArrowDownRight
+                    aria-hidden="true"
+                    className="h-4 w-4 text-[#E8684A] transition-transform duration-200 group-hover:translate-x-0.5 group-hover:translate-y-0.5 motion-reduce:transition-none"
+                  />
+                </a>
 
-                <ArrowDownRight
+                <span
                   aria-hidden="true"
-                  className="h-4 w-4 text-[#E8684A] transition-transform duration-200 group-hover:translate-x-0.5 group-hover:translate-y-0.5"
+                  className="hidden h-3 w-px bg-white/15 xs:inline-block"
                 />
-              </a>
+
+                <a
+                  href="#contact"
+                  onClick={scrollTo('contact')}
+                  className="inline-flex min-h-11 items-center rounded-md py-2 text-sm text-zinc-400 transition-colors hover:text-[#FAF5E8] active:text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#E8684A] focus-visible:ring-offset-4 focus-visible:ring-offset-[#141418]"
+                >
+                  Get in touch
+                </a>
+              </div>
             </div>
           </div>
 
-          {/* Childhood portrait */}
-          <div className="z-10 flex justify-center lg:col-span-5 lg:justify-end lg:pr-6">
-
+          {/* Secondary layer: Signature Interactive Childhood Portrait */}
+          <div className="z-10 flex justify-center md:col-span-5 md:justify-end md:pr-3 lg:pr-6">
             <div className="relative">
-              {/* Quietly floating signature maker mark anchored outside portrait top-left */}
-              <motion.div
-                key={prefersReducedMotion ? 'maker-static' : 'maker-ambient'}
+              {/* Signature maker mark anchored outside portrait top-left */}
+              <div
                 aria-hidden="true"
-                initial={false}
-                animate={
-                  prefersReducedMotion
-                    ? { y: 0, rotate: -2 }
-                    : { y: [0, -4, 0], rotate: [-3, 3.5, -3] }
-                }
-                transition={
-                  prefersReducedMotion
-                    ? { duration: 0 }
-                    : {
-                        duration: 9.2,
-                        delay: 0.7,
-                        repeat: Infinity,
-                        ease: 'easeInOut',
-                      }
-                }
-                className="pointer-events-none absolute -left-5 -top-5 z-20 sm:-left-7 sm:-top-6"
+                className="pointer-events-none absolute -left-4 -top-4 z-20 sm:-left-6 sm:-top-5"
               >
                 <MakerMark size={20} className="opacity-85" />
-              </motion.div>
-
-              {/* Single quiet offset frame with slow ambient drift */}
-              <div
-                aria-hidden="true"
-                className="pointer-events-none absolute inset-0 translate-x-3 translate-y-3"
-              >
-                <motion.div
-                  key={prefersReducedMotion ? 'frame-static' : 'frame-ambient'}
-                  initial={false}
-                  animate={
-                    prefersReducedMotion
-                      ? { x: 0, y: 0, rotate: 0 }
-                      : { x: [0, 2.5, 0], y: [0, -2, 0], rotate: [0, 0.65, 0] }
-                  }
-                  transition={
-                    prefersReducedMotion
-                      ? { duration: 0 }
-                      : {
-                          duration: 11.6,
-                          delay: 2.1,
-                          repeat: Infinity,
-                          ease: 'easeInOut',
-                        }
-                  }
-                  className="h-full w-full rounded-2xl border border-[#FAF5E8]/15"
-                />
               </div>
 
+              {/* Quiet architectural backing frame */}
               <div
-                className={`relative transition-transform duration-500 ease-out ${
+                aria-hidden="true"
+                className="pointer-events-none absolute inset-0 translate-x-2.5 translate-y-2.5 rounded-2xl border border-[#FAF5E8]/15 sm:translate-x-3 sm:translate-y-3 sm:rounded-3xl"
+              />
+
+              <div
+                className={`relative transition-transform duration-500 ease-out motion-reduce:transition-none ${
                   prefersReducedMotion
                     ? ''
-                    : 'lg:-rotate-[1deg] lg:hover:rotate-0'
+                    : 'md:-rotate-[1deg] md:hover:rotate-0'
                 }`}
               >
                 <ChildhoodPortrait
-                  className="w-[220px] xs:w-[250px] sm:w-[285px] lg:w-[310px] xl:w-[325px]"
+                  className="w-[196px] min-[375px]:w-[214px] xs:w-[232px] sm:w-[260px] md:w-[245px] lg:w-[300px] xl:w-[325px]"
                 />
               </div>
             </div>
           </div>
         </div>
 
-        {/* Original bottom navigation */}
-        <footer className="flex items-center justify-between gap-4 border-t border-white/[0.09] pt-4 text-xs font-mono text-zinc-500">
-
+        {/* Tertiary bottom navigation strip */}
+        <footer className="flex items-center justify-between gap-4 border-t border-white/[0.09] pt-3.5 text-xs font-mono text-zinc-400 sm:pt-4">
           <span className="truncate pr-3">
             Software · Systems · Independent Ventures
           </span>
@@ -222,13 +212,13 @@ export const HeroHome: React.FC = () => {
           <a
             href="#about"
             onClick={scrollTo('about')}
-            className="group inline-flex shrink-0 items-center gap-2 py-1 text-zinc-400 transition-colors hover:text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#E8684A]"
+            className="group inline-flex min-h-10 shrink-0 items-center gap-2 rounded-md py-1.5 text-zinc-300 transition-colors hover:text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#E8684A] focus-visible:ring-offset-2 focus-visible:ring-offset-[#141418]"
           >
             <span>A little more</span>
 
             <ArrowDown
               aria-hidden="true"
-              className="h-3.5 w-3.5 transition-transform group-hover:translate-y-0.5"
+              className="h-3.5 w-3.5 transition-transform group-hover:translate-y-0.5 motion-reduce:transition-none"
             />
           </a>
         </footer>

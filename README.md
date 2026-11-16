@@ -1,6 +1,6 @@
 # Faraz Kayan Haque — Portfolio
 
-> Personal portfolio of Faraz Kayan Haque — student and builder based in Dhaka, Bangladesh, showcasing software projects, technical experiments, and homelab infrastructure.  
+> Personal portfolio of Faraz Kayan Haque — student and builder based in Dhaka, Bangladesh, showcasing software projects, technical experiments, and independent ventures.  
 > **Live Website:** [farazkh.dev](https://farazkh.dev)  
 > **Source Repository:** [github.com/farazkayan/portfolio](https://github.com/farazkayan/portfolio)
 
@@ -16,7 +16,6 @@ A personal portfolio built to reflect genuine experimentation, real-world learni
 
 - **Interactive Halftone Portrait:** A custom childhood photograph rendered as a 60+ FPS interactive halftone particle canvas. Built with GSAP and batched HTML5 `Path2D` operations, it morphs smoothly between photographic states with kinetic arcs, radial staggering, full DPR scaling, and reduced-motion fallback.
 - **Detailed Project Case Studies:** In-depth breakdowns of real software including **SoundMesh** (a local-first zero-cloud audio sync pipeline), **Avero** (a private spatial memory vault), and **Nexus** (a native Windows workflow manager).
-- **Homelab Section:** A chronicle of self-hosting experiments run on a repurposed Dell laptop with Ubuntu 24.04 and Docker, exploring services like Immich, Jellyfin, Open WebUI, and Nextcloud.
 - **Interactive Cat Canvas:** A playful, lightweight Rive animation (`cat-following-the-mouse.riv`) tracking pointer movement within the hobbies section.
 - **Halftone Wordmark Footer:** An interactive typographic dot-matrix footer that reacts to pointer movement and clicks with spring physics and warmth gradient dispersal.
 
@@ -56,7 +55,6 @@ A personal portfolio built to reflect genuine experimentation, real-world learni
 │   │   ├── ProjectsSection.tsx  # Featured work overview
 │   │   ├── ProjectCard.tsx      # Expandable project case-study card
 │   │   ├── AllProjectsPage.tsx  # Dedicated project archive view
-│   │   ├── HomelabSection.tsx   # Self-hosted infrastructure breakdown
 │   │   ├── HobbiesSection.tsx   # Interests & Rive cat interaction
 │   │   ├── ContactSection.tsx   # Contact channels & live Dhaka time radar
 │   │   ├── Navbar.tsx           # Floating Limelight navigation bar

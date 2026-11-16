@@ -16,7 +16,7 @@ export const SEO_CONFIGS: Record<'home' | 'projects' | 'photography', RouteSeoCo
   home: {
     title: 'Faraz Kayan Haque | Student & Builder in Dhaka',
     description:
-      'Faraz Kayan Haque is a student and builder in Dhaka, Bangladesh. Explore his software projects, technical experiments, and self-hosted homelab.',
+      'Faraz Kayan Haque is a student and builder in Dhaka, Bangladesh. Explore his software projects, technical experiments, and independent ventures.',
     canonicalUrl: 'https://farazkh.dev/',
     ogType: 'website',
     ogImage: 'https://farazkh.dev/og-image.png',

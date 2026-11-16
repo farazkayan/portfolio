@@ -63,7 +63,7 @@ export const ActivityHeatmapSection: React.FC<ActivityHeatmapSectionProps> = ({
 
   return (
     <div
-      className={`rounded-2xl bg-[#0c0c0e]/70 border border-zinc-800/70 p-5 sm:p-7 hover:border-purple-500/30 transition-all duration-200 shadow-sm ${className}`}
+      className={`rounded-2xl bg-[#0c0c0e]/70 border border-zinc-800/70 p-4 sm:p-5 hover:border-purple-500/30 transition-all duration-200 shadow-sm ${className}`}
     >
       <ActivityHeatmap
         days={state.days}

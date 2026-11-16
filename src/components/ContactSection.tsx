@@ -85,14 +85,14 @@ export const ContactSection: React.FC = () => {
   return (
     <section
       id="contact"
-      className="relative scroll-mt-24 sm:scroll-mt-28 py-20 sm:py-24 lg:py-28 px-4 xs:px-5 sm:px-8 lg:px-12 max-w-5xl mx-auto w-full"
+      className="relative scroll-mt-24 sm:scroll-mt-28 py-12 sm:py-16 px-4 xs:px-5 sm:px-8 lg:px-12 max-w-5xl mx-auto w-full border-t border-zinc-900/60"
     >
-      <div className="flex flex-col items-center text-center space-y-8 sm:space-y-11">
+      <div className="flex flex-col items-center text-center space-y-6 sm:space-y-7">
         {/* ====================================================
             EYEBROW / THE END LABEL
             ==================================================== */}
         <div className="flex items-center gap-2 text-xs font-mono text-zinc-500">
-          <span className="text-purple-400 font-semibold">08</span>
+          <span className="text-purple-400 font-semibold">06</span>
           <span className="text-zinc-700">/</span>
           <span className="uppercase tracking-widest text-zinc-300 font-medium">
             Contact &amp; Connect
@@ -226,7 +226,7 @@ export const ContactSection: React.FC = () => {
         {/* ====================================================
             QUIET SIGN-OFF DISCLAIMER
             ==================================================== */}
-        <div className="pt-6 sm:pt-8 border-t border-zinc-900/90 w-full flex flex-col sm:flex-row items-center justify-between gap-3 text-xs font-mono text-zinc-500">
+        <div className="pt-5 sm:pt-6 border-t border-zinc-900/90 w-full flex flex-col sm:flex-row items-center justify-between gap-3 text-xs font-mono text-zinc-500">
           <div className="flex items-center gap-2">
             <span>© 2026 Faraz Kayan Haque</span>
           </div>

@@ -38,7 +38,8 @@ export function FlowButton({
   const content = (
     <>
       {/* Left arrow (arr-2) - slides in from the left on hover */}
-      <ArrowRight 
+      <ArrowRight
+        aria-hidden="true"
         className={`absolute w-4 h-4 left-[-25%] ${leftArrowStroke} fill-none z-[9] group-hover:left-4 transition-all duration-[800ms] ease-[cubic-bezier(0.34,1.56,0.64,1)]`} 
       />
 
@@ -54,7 +55,8 @@ export function FlowButton({
       />
 
       {/* Right arrow (arr-1) - slides out to the right on hover */}
-      <ArrowRight 
+      <ArrowRight
+        aria-hidden="true"
         className={`absolute w-4 h-4 right-4 ${rightArrowStroke} fill-none z-[9] group-hover:right-[-25%] transition-all duration-[800ms] ease-[cubic-bezier(0.34,1.56,0.64,1)]`} 
       />
     </>
