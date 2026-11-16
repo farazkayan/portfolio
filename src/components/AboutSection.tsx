@@ -53,11 +53,6 @@ export const AboutSection: React.FC = () => {
         id="about"
         className="scroll-mt-20 relative space-y-12 py-20 sm:space-y-16 sm:py-24 lg:py-28 px-4 xs:px-5 sm:px-8 lg:px-12 max-w-6xl mx-auto w-full overflow-hidden"
       >
-        {/* Subtle Destination Atmosphere: Warm Violet */}
-        <div
-          aria-hidden="true"
-          className="pointer-events-none absolute inset-0 -z-10 bg-[radial-gradient(ellipse_at_top_right,rgba(192,132,252,0.035)_0%,transparent_65%)]"
-        />
         {/* ----------------------------------------------------
             01 / HOW THIS STARTED
             Clean statement (Left) + Personal story (Right)
@@ -206,11 +201,6 @@ export const AboutSection: React.FC = () => {
         id="education"
         className="scroll-mt-20 relative py-20 sm:py-24 lg:py-28 px-4 xs:px-5 sm:px-8 lg:px-12 max-w-6xl mx-auto w-full overflow-hidden"
       >
-        {/* Subtle Destination Atmosphere: Cool Blue */}
-        <div
-          aria-hidden="true"
-          className="pointer-events-none absolute inset-0 -z-10 bg-[radial-gradient(ellipse_at_top_left,rgba(56,189,248,0.035)_0%,transparent_65%)]"
-        />
         {/* Header */}
         <div>
           <div className="flex items-center justify-between border-b border-zinc-900 pb-3 mb-4">

@@ -9,6 +9,7 @@ import { HomelabSection } from './components/HomelabSection';
 import { HobbiesSection } from './components/HobbiesSection';
 import { ContactSection } from './components/ContactSection';
 import HalftoneWordmarkFooter from './components/ui/halftone-wordmark-footer';
+import { EditorialBackdrop } from './components/ui/EditorialBackdrop';
 import { updateDocumentSeo } from './utils/seo';
 
 const AllProjectsPage = lazy(() =>
@@ -119,12 +120,14 @@ export default function App() {
   }
 
   return (
-    <div className="min-h-screen bg-[#141418] text-zinc-100 flex flex-col font-sans selection:bg-purple-900/40 selection:text-purple-200">
+    <div className="relative min-h-screen bg-[#141418] text-zinc-100 flex flex-col font-sans selection:bg-purple-900/40 selection:text-purple-200">
+      <EditorialBackdrop />
+
       {/* Floating Limelight Navbar */}
       <Navbar />
 
       {/* Main Content Flow */}
-      <main className="flex-1 flex flex-col">
+      <main className="relative z-10 flex-1 flex flex-col">
         <HeroHome />
         <AboutSection />
         <SkillsSection />

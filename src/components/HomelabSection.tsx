@@ -123,11 +123,6 @@ export const HomelabSection: React.FC = () => {
       id="homelab"
       className="scroll-mt-24 sm:scroll-mt-28 py-20 sm:py-24 lg:py-28 px-5 sm:px-8 lg:px-12 max-w-6xl mx-auto w-full relative overflow-hidden"
     >
-      <div
-        aria-hidden="true"
-        className="pointer-events-none absolute inset-0 -z-10 bg-[radial-gradient(ellipse_at_top,rgba(52,211,153,0.03)_0%,transparent_65%)]"
-      />
-
       <div className="space-y-9 sm:space-y-12">
         <div className="space-y-3 sm:space-y-4">
           <div className="flex items-center gap-2 border-b border-zinc-900 pb-3 text-xs font-mono text-zinc-500">

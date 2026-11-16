@@ -12,6 +12,7 @@ import {
   BookOpen,
 } from 'lucide-react';
 import { projects, ProjectData } from '../data/projectsData';
+import { EditorialBackdrop } from './ui/EditorialBackdrop';
 
 interface AllProjectsPageProps {
   onBack: () => void;
@@ -23,7 +24,8 @@ export const AllProjectsPage: React.FC<AllProjectsPageProps> = ({ onBack }) => {
   }, []);
 
   return (
-    <div className="min-h-screen bg-[#141418] text-zinc-100 flex flex-col font-sans selection:bg-purple-900/40 selection:text-purple-200 antialiased">
+    <div className="relative min-h-screen bg-[#141418] text-zinc-100 flex flex-col font-sans selection:bg-purple-900/40 selection:text-purple-200 antialiased">
+      <EditorialBackdrop />
       {/* ====================================================
           STICKY TOP NAVIGATION BAR (Destination Header)
           ==================================================== */}
@@ -56,7 +58,7 @@ export const AllProjectsPage: React.FC<AllProjectsPageProps> = ({ onBack }) => {
       {/* ====================================================
           MAIN EDITORIAL PROJECT DESTINATION CANVAS
           ==================================================== */}
-      <main className="flex-1 max-w-6xl mx-auto px-4 xs:px-5 sm:px-8 lg:px-12 py-10 sm:py-20 lg:py-24 space-y-10 sm:space-y-16 w-full">
+      <main className="relative z-10 flex-1 max-w-6xl mx-auto px-4 xs:px-5 sm:px-8 lg:px-12 py-10 sm:py-20 lg:py-24 space-y-10 sm:space-y-16 w-full">
         {/* Destination Header with Faraz's Authentic Voice */}
         <div className="space-y-4 border-b border-zinc-800/80 pb-8 sm:pb-10 max-w-3xl">
           <div className="flex items-center gap-2 text-xs font-mono text-purple-400">
@@ -100,7 +102,7 @@ export const AllProjectsPage: React.FC<AllProjectsPageProps> = ({ onBack }) => {
       {/* ====================================================
           FOOTER RETURN ACTION
           ==================================================== */}
-      <footer className="border-t border-zinc-800/80 py-8 sm:py-14 px-4 xs:px-5 sm:px-8 lg:px-12 bg-[#09090b]">
+      <footer className="relative z-10 border-t border-zinc-800/80 py-8 sm:py-14 px-4 xs:px-5 sm:px-8 lg:px-12 bg-[#09090b]">
         <div className="max-w-6xl mx-auto flex flex-col xs:flex-row items-center justify-between gap-4">
           <a
             href="/"

@@ -3,6 +3,7 @@ import { ArrowLeft } from 'lucide-react';
 import { PolaroidLineCarousel } from './ui/polaroid-line-carousel';
 import { PhotoLightbox } from './PhotoLightbox';
 import { photographyData, PhotoItem } from '../data/photographyData';
+import { EditorialBackdrop } from './ui/EditorialBackdrop';
 
 interface PhotographyPageProps {
   onBack: () => void;
@@ -21,7 +22,8 @@ export const PhotographyPage: React.FC<PhotographyPageProps> = ({ onBack }) => {
   }, []);
 
   return (
-    <div className="min-h-screen bg-[#141418] text-zinc-100 flex flex-col font-sans selection:bg-sky-900/40 selection:text-sky-200 antialiased">
+    <div className="relative min-h-screen bg-[#141418] text-zinc-100 flex flex-col font-sans selection:bg-sky-900/40 selection:text-sky-200 antialiased">
+      <EditorialBackdrop />
       {/* Top Navigation Bar */}
       <header className="sticky top-0 z-40 backdrop-blur-2xl bg-[#141418]/90 border-b border-zinc-800/80 px-4 xs:px-5 sm:px-8 lg:px-12 py-3.5 sm:py-4">
         <div className="max-w-6xl mx-auto flex items-center justify-between">
@@ -43,7 +45,7 @@ export const PhotographyPage: React.FC<PhotographyPageProps> = ({ onBack }) => {
       </header>
 
       {/* Main Content */}
-      <main className="flex-1 max-w-6xl mx-auto px-4 xs:px-5 sm:px-8 lg:px-12 py-6 sm:py-10 space-y-8 sm:space-y-12 w-full">
+      <main className="relative z-10 flex-1 max-w-6xl mx-auto px-4 xs:px-5 sm:px-8 lg:px-12 py-6 sm:py-10 space-y-8 sm:space-y-12 w-full">
         {/* Hanging Polaroid Line Carousel */}
         <div className="overflow-hidden rounded-2xl sm:rounded-3xl border border-zinc-800/80 bg-[#0e0e12] shadow-2xl">
           <PolaroidLineCarousel
@@ -144,7 +146,7 @@ export const PhotographyPage: React.FC<PhotographyPageProps> = ({ onBack }) => {
       {/* ====================================================
           FOOTER RETURN ACTION
           ==================================================== */}
-      <footer className="border-t border-zinc-800/80 py-8 sm:py-14 px-4 xs:px-5 sm:px-8 lg:px-12 bg-[#09090b]">
+      <footer className="relative z-10 border-t border-zinc-800/80 py-8 sm:py-14 px-4 xs:px-5 sm:px-8 lg:px-12 bg-[#09090b]">
         <div className="max-w-6xl mx-auto flex flex-col xs:flex-row items-center justify-between gap-4">
           <a
             href="/"

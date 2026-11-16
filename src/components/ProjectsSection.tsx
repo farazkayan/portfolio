@@ -19,11 +19,6 @@ export const ProjectsSection: React.FC<ProjectsSectionProps> = ({
       id="projects"
       className="scroll-mt-24 sm:scroll-mt-28 py-20 sm:py-24 lg:py-28 px-4 xs:px-5 sm:px-8 lg:px-12 max-w-6xl mx-auto w-full relative overflow-hidden"
     >
-      {/* Subtle Destination Atmosphere: Showcase Focus */}
-      <div
-        aria-hidden="true"
-        className="pointer-events-none absolute inset-0 -z-10 bg-[radial-gradient(ellipse_at_top,rgba(56,189,248,0.03)_0%,transparent_65%)]"
-      />
       <div className="space-y-10 sm:space-y-12">
         {/* ====================================================
             SECTION HEADER

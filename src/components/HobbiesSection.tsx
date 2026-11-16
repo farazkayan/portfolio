@@ -553,20 +553,6 @@ export const HobbiesSection: React.FC<HobbiesSectionProps> = ({
         overflow-hidden
       "
     >
-      {/* ------------------------------------------------------
-          Subtle Destination Atmosphere
-          ------------------------------------------------------ */}
-      <div
-        aria-hidden="true"
-        className="
-          pointer-events-none
-          absolute
-          inset-0
-          -z-10
-          bg-[radial-gradient(ellipse_at_bottom_right,rgba(251,191,36,0.025)_0%,transparent_70%)]
-        "
-      />
-
       <div className="space-y-9 sm:space-y-12">
         {/* ====================================================
             SECTION HEADER

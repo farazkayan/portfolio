@@ -87,12 +87,6 @@ export const ContactSection: React.FC = () => {
       id="contact"
       className="relative scroll-mt-24 sm:scroll-mt-28 py-20 sm:py-24 lg:py-28 px-4 xs:px-5 sm:px-8 lg:px-12 max-w-5xl mx-auto w-full"
     >
-      {/* Background radial accent glow */}
-      <div
-        className="pointer-events-none absolute inset-0 -z-10 bg-[radial-gradient(circle_at_center,rgba(168,85,247,0.04)_0%,transparent_70%)]"
-        aria-hidden="true"
-      />
-
       <div className="flex flex-col items-center text-center space-y-8 sm:space-y-11">
         {/* ====================================================
             EYEBROW / THE END LABEL
