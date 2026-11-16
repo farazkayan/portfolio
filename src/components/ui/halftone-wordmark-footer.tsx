@@ -95,6 +95,7 @@ const DEFAULT_COLUMNS: FooterColumn[] = [
       { label: "About", href: "#about" },
       { label: "Education", href: "#education" },
       { label: "Skills", href: "#skills" },
+      { label: "Ventures", href: "#ventures" },
       { label: "Homelab", href: "#homelab" },
       { label: "Hobbies", href: "#hobbies" },
     ],

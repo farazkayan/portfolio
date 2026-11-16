@@ -92,7 +92,7 @@ export const ContactSection: React.FC = () => {
             EYEBROW / THE END LABEL
             ==================================================== */}
         <div className="flex items-center gap-2 text-xs font-mono text-zinc-500">
-          <span className="text-purple-400 font-semibold">07</span>
+          <span className="text-purple-400 font-semibold">08</span>
           <span className="text-zinc-700">/</span>
           <span className="uppercase tracking-widest text-zinc-300 font-medium">
             Contact &amp; Connect

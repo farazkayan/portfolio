@@ -130,7 +130,7 @@ export const HomelabSection: React.FC = () => {
       <div className="space-y-9 sm:space-y-12">
         <div className="space-y-3 sm:space-y-4">
           <div className="flex items-center gap-2 border-b border-zinc-900 pb-3 text-xs font-mono text-zinc-500">
-            <span className="font-semibold text-emerald-400">05</span>
+            <span className="font-semibold text-emerald-400">06</span>
             <span className="text-zinc-700">/</span>
             <span className="font-medium uppercase tracking-widest text-zinc-300">
               Infrastructure

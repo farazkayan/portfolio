@@ -4,6 +4,7 @@ import { HeroHome } from './components/HeroHome';
 import { AboutSection } from './components/AboutSection';
 import { SkillsSection } from './components/SkillsSection';
 import { ProjectsSection } from './components/ProjectsSection';
+import { VenturesSection } from './components/VenturesSection';
 import { HomelabSection } from './components/HomelabSection';
 import { HobbiesSection } from './components/HobbiesSection';
 import { ContactSection } from './components/ContactSection';
@@ -128,6 +129,7 @@ export default function App() {
         <AboutSection />
         <SkillsSection />
         <ProjectsSection onViewAllProjects={handleGoToAllProjects} />
+        <VenturesSection />
         <HomelabSection />
         <HobbiesSection onExplorePhotography={handleGoToPhotography} />
         <ContactSection />

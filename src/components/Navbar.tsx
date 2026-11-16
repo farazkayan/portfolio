@@ -6,6 +6,7 @@ import {
   GraduationCap,
   Code2,
   FolderKanban,
+  Store,
   Server,
   Gamepad2,
   Mail,
@@ -17,6 +18,7 @@ const SECTION_IDS = [
   'education',
   'skills',
   'projects',
+  'ventures',
   'homelab',
   'hobbies',
   'contact',
@@ -137,22 +139,28 @@ export const Navbar: React.FC = () => {
       onClick: () => scrollToSection('projects', 4),
     },
     {
+      id: 'ventures',
+      icon: <Store />,
+      label: 'Ventures',
+      onClick: () => scrollToSection('ventures', 5),
+    },
+    {
       id: 'homelab',
       icon: <Server />,
       label: 'Homelab',
-      onClick: () => scrollToSection('homelab', 5),
+      onClick: () => scrollToSection('homelab', 6),
     },
     {
       id: 'hobbies',
       icon: <Gamepad2 />,
       label: 'Hobbies',
-      onClick: () => scrollToSection('hobbies', 6),
+      onClick: () => scrollToSection('hobbies', 7),
     },
     {
       id: 'contact',
       icon: <Mail />,
       label: 'Contact',
-      onClick: () => scrollToSection('contact', 7),
+      onClick: () => scrollToSection('contact', 8),
     },
   ];
 

@@ -577,7 +577,7 @@ export const HobbiesSection: React.FC<HobbiesSectionProps> = ({
               "
             >
               <span className="text-zinc-400 font-semibold">
-                06
+                07
               </span>
 
               <span className="text-zinc-700">/</span>
